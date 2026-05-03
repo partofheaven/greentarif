@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Корзина — GreenTarif</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="savings-ticker">☀️ Наши клиенты уже сэкономили: <span class="savings-amount" id="savingsAmount">0 ₽</span></div>
+      <div>📍 Краснодар, Сочи, Новороссийск</div>
+    </div>
+  </div>
+  <div class="header-main">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🌿</div>
+        <div class="logo-text"><strong>GreenTarif</strong><span>Солнечная энергия Кубани</span></div>
+      </a>
+      <nav id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="calculator.html">Калькулятор</a>
+        <a href="about.html">О компании</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="header-actions">
+        <div class="phone-link"><strong>+7 (861) 200-50-30</strong></div>
+        <button class="btn-callback" data-modal="callback">Заказать звонок</button>
+        <a href="cart.html" class="cart-btn">🛒 <span>Корзина</span><span class="cart-count hidden" id="cartCount">0</span></a>
+        <button class="burger" id="burger">☰</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="breadcrumbs">
+    <a href="index.html">Главная</a><span class="sep">›</span><span class="current">Корзина</span>
+  </nav>
+</div>
+
+<div class="container">
+  <h1 style="font-size:28px;font-weight:800;color:var(--green-dark);margin-bottom:24px">🛒 Корзина</h1>
+
+  <!-- Empty state -->
+  <div id="cartEmpty" class="empty-cart hidden">
+    <div class="empty-icon">🛒</div>
+    <h2>Корзина пуста</h2>
+    <p>Добавьте товары из каталога для оформления заказа</p>
+    <a href="catalog.html" class="btn-primary">Перейти в каталог</a>
+  </div>
+
+  <div class="cart-layout" id="cartWrap">
+    <div>
+      <div class="cart-items" id="cartItemsWrap">
+        <!-- Filled by JS -->
+      </div>
+      <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <a href="catalog.html" style="color:var(--green);font-weight:600;font-size:14px;text-decoration:none">← Продолжить покупки</a>
+        <button onclick="if(confirm('Очистить корзину?')){cartClear();renderCart()}" style="background:none;border:none;color:var(--text-muted);font-size:14px;cursor:pointer;text-decoration:underline">Очистить корзину</button>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div id="cartSummary" class="cart-summary">
+      <h3>Итого</h3>
+      <div class="summary-row"><span>Товары:</span><span id="subtotal">0 ₽</span></div>
+      <div class="summary-row"><span>Доставка по КК:</span><span id="deliveryCost">2 500 ₽</span></div>
+      <div class="summary-row" style="font-size:12px;color:var(--text-muted)">
+        <span>Бесплатно при заказе от:</span><span>100 000 ₽</span>
+      </div>
+      <div class="summary-row total"><span>К оплате:</span><span id="totalAmount">0 ₽</span></div>
+      <a id="checkoutLink" href="checkout.html" class="btn-submit" style="display:block;text-align:center;margin-top:16px;text-decoration:none;padding:14px">
+        Оформить заказ →
+      </a>
+      <div style="margin-top:16px">
+        <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:8px">Способы оплаты:</p>
+        <div style="display:flex;gap:8px;justify-content:center;font-size:20px">💳 🏦 💵</div>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:var(--green-pale);border-radius:8px;font-size:13px;color:var(--green-dark)">
+        ✅ Гарантия возврата 30 дней<br>
+        🚚 Доставка по всему КК<br>
+        📋 Официальные документы
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="height:64px"></div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="callbackModal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="modal-form">
+      <h3>📞 Заказать обратный звонок</h3>
+      <p>Перезвоним в течение 15 минут</p>
+      <form id="callbackForm">
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <div class="form-group"><label>Удобное время</label><select name="time"><option>Любое</option><option>9:00-12:00</option><option>12:00-15:00</option><option>15:00-18:00</option></select></div>
+        <button type="submit" class="btn-submit">Заказать звонок</button>
+      </form>
+    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заявка принята!</h3></div>
+  </div>
+</div>
+<div id="notification" class="notification"></div>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

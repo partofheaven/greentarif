@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Товар — GreenTarif</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="savings-ticker">☀️ Наши клиенты уже сэкономили: <span class="savings-amount" id="savingsAmount">0 ₽</span></div>
+      <div>📍 Краснодар, Сочи, Новороссийск</div>
+    </div>
+  </div>
+  <div class="header-main">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🌿</div>
+        <div class="logo-text"><strong>GreenTarif</strong><span>Солнечная энергия Кубани</span></div>
+      </a>
+      <nav id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="calculator.html">Калькулятор</a>
+        <a href="about.html">О компании</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="header-actions">
+        <div class="phone-link"><strong>+7 (861) 200-50-30</strong><span>Бесплатная консультация</span></div>
+        <button class="btn-callback" data-modal="callback">Заказать звонок</button>
+        <a href="cart.html" class="cart-btn">🛒 <span>Корзина</span><span class="cart-count hidden" id="cartCount">0</span></a>
+        <button class="burger" id="burger">☰</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="breadcrumbs" id="breadcrumbs">
+    <a href="index.html">Главная</a>
+    <span class="sep">›</span>
+    <a href="catalog.html">Каталог</a>
+    <span class="sep">›</span>
+    <span class="current" id="breadcrumbName">Товар</span>
+  </nav>
+</div>
+
+<div class="container" id="productWrap" style="padding-bottom:64px">
+  <div style="text-align:center;padding:80px;color:var(--text-muted)">Загрузка...</div>
+</div>
+
+<!-- Related -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <h2 class="section-title">С этим покупают</h2>
+    <div class="products-grid" id="relatedGrid"></div>
+  </div>
+</section>
+
+<!-- Modals -->
+<div class="modal-overlay" id="callbackModal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="modal-form">
+      <h3>📞 Заказать обратный звонок</h3>
+      <p>Перезвоним в течение 15 минут</p>
+      <form id="callbackForm">
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <div class="form-group"><label>Удобное время</label><select name="time"><option>Любое</option><option>9:00-12:00</option><option>12:00-15:00</option><option>15:00-18:00</option></select></div>
+        <button type="submit" class="btn-submit">Заказать звонок</button>
+      </form>
+    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заявка принята!</h3><p>Перезвоним в течение 15 минут</p></div>
+  </div>
+</div>
+<div class="modal-overlay" id="quickBuyModal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="modal-form">
+      <h3>⚡ Купить в 1 клик</h3>
+      <p id="quickBuyProductName" style="font-weight:700;color:var(--green-dark);margin-bottom:16px"></p>
+      <form id="quickBuyForm">
+        <input type="hidden" name="article" id="quickBuyArticle">
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <button type="submit" class="btn-submit">Оформить заказ</button>
+      </form>
+    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заказ принят!</h3><p>Менеджер свяжется в течение 30 минут</p></div>
+  </div>
+</div>
+<div id="notification" class="notification"></div>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+(async function () {
+  const params = new URLSearchParams(location.search);
+  const articleId = params.get('id');
+  const products = await loadProducts();
+  const p = products.find(x => x.article === articleId);
+
+  const wrap = document.getElementById('productWrap');
+  if (!p) {
+    wrap.innerHTML = '<div style="text-align:center;padding:80px"><h2>Товар не найден</h2><a href="catalog.html" class="btn-green" style="margin-top:16px">← В каталог</a></div>';
+    return;
+  }
+
+  document.title = p.name + ' — GreenTarif';
+  document.getElementById('pageTitle').textContent = p.name + ' — GreenTarif';
+  document.getElementById('breadcrumbName').textContent = p.name;
+
+  const discount = p.old_price ? Math.round((1 - p.price / p.old_price) * 100) : 0;
+  const power = p.power_wp ? `${p.power_wp} Вт` : (p.power_kw ? `${p.power_kw} кВт` : (p.energy_kwh ? `${p.energy_kwh} кВт·ч` : ''));
+
+  const images = p.images && p.images.length > 0 ? p.images : [p.image_url];
+
+  wrap.innerHTML = `
+  <div class="product-layout">
+    <!-- Gallery -->
+    <div class="product-gallery">
+      <div class="gallery-main">
+        <img id="galleryMain" src="${images[0]}" alt="${p.name}">
+      </div>
+      ${images.length > 1 ? `
+      <div class="gallery-thumbs">
+        ${images.map((img, i) => `
+          <div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="setMainImg('${img}', this)">
+            <img src="${img}" alt="">
+          </div>`).join('')}
+      </div>` : ''}
+    </div>
+
+    <!-- Info -->
+    <div class="product-detail-info">
+      <div class="product-article">Арт: ${p.article} • ${p.brand}</div>
+      <h1 class="product-detail-name">${p.name}</h1>
+
+      <div class="product-meta">
+        ${p.stock > 0
+          ? `<span class="stock-badge">В наличии ${p.stock} шт (Краснодар)</span>`
+          : '<span class="stock-badge" style="background:#FFEBEE;color:#C62828;border-color:#FFCDD2">Нет в наличии</span>'}
+        ${power ? `<span class="product-power">⚡ ${power}</span>` : ''}
+        ${discount ? `<span style="background:#E53935;color:#fff;font-size:13px;font-weight:700;padding:3px 10px;border-radius:100px">-${discount}%</span>` : ''}
+      </div>
+
+      <div class="product-price-block">
+        <span class="product-price-big">${formatPrice(p.price)}</span>
+        ${p.old_price ? `<span class="product-old-price-big">${formatPrice(p.old_price)}</span>` : ''}
+      </div>
+
+      <div class="product-buy-actions">
+        <div class="qty-row">
+          <div class="qty-input">
+            <button class="qty-btn" onclick="changeProductQty(-1)">−</button>
+            <input class="qty-val" type="number" min="1" value="1" id="productQty">
+            <button class="qty-btn" onclick="changeProductQty(1)">+</button>
+          </div>
+          <button class="btn-cart-big" onclick="addToCartFromPage()">🛒 В корзину</button>
+        </div>
+        <button class="btn-one-click" onclick="openQuickBuy('${p.article}', '${p.name.replace(/'/g, "\\'")}')">⚡ Купить в 1 клик</button>
+      </div>
+
+      <div class="product-guarantees">
+        <div class="guarantee-item"><span>✅</span><span>Гарантия ${p.warranty_years} лет</span></div>
+        <div class="guarantee-item"><span>🚚</span><span>Доставка по КК от 1 дня</span></div>
+        <div class="guarantee-item"><span>🏗️</span><span>Монтаж под ключ — звоните</span></div>
+        <div class="guarantee-item"><span>📋</span><span>Сертификаты и документы</span></div>
+      </div>
+
+      ${(p.suitable_system_kw_min && p.suitable_system_kw_max) ? `
+      <div style="background:var(--yellow-pale);border:1px solid var(--yellow);border-radius:var(--radius-sm);padding:14px;margin-bottom:16px;font-size:14px">
+        💡 <strong>Подходит для систем мощностью ${p.suitable_system_kw_min}–${p.suitable_system_kw_max} кВт</strong><br>
+        <span style="color:var(--text-muted)">Для частных домов и бизнеса Краснодарского края</span>
+      </div>` : ''}
+
+      <!-- Specs tabs -->
+      <div class="tabs">
+        <button class="tab active" onclick="switchProductTab('desc', this)">Описание</button>
+        <button class="tab" onclick="switchProductTab('specs', this)">Характеристики</button>
+      </div>
+
+      <div id="tabDesc" style="font-size:15px;line-height:1.7;color:var(--text)">
+        ${p.description || 'Описание уточняется.'}
+      </div>
+      <div id="tabSpecs" class="hidden">
+        <table class="specs-table">
+          ${Object.entries(p.specifications || {}).map(([k, v]) =>
+            `<tr><td>${k}</td><td>${v}</td></tr>`
+          ).join('')}
+        </table>
+      </div>
+    </div>
+  </div>`;
+
+  // Load related
+  if (p.related_articles && p.related_articles.length > 0) {
+    const related = products.filter(x => p.related_articles.includes(x.article) && x.active);
+    const grid = document.getElementById('relatedGrid');
+    if (grid && related.length > 0) {
+      grid.innerHTML = related.map(buildProductCard).join('');
+    } else if (grid) {
+      grid.closest('section').style.display = 'none';
+    }
+  } else {
+    document.getElementById('relatedGrid')?.closest('section')?.remove();
+  }
+
+  function addToCartFromPage() {
+    const qty = parseInt(document.getElementById('productQty').value) || 1;
+    cartAdd(p.article, qty);
+  }
+
+  function changeProductQty(delta) {
+    const input = document.getElementById('productQty');
+    input.value = Math.max(1, (parseInt(input.value) || 1) + delta);
+  }
+
+  window.changeProductQty = changeProductQty;
+  window.addToCartFromPage = addToCartFromPage;
+})();
+
+function setMainImg(src, thumb) {
+  document.getElementById('galleryMain').src = src;
+  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function switchProductTab(tab, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tabDesc').classList.toggle('hidden', tab !== 'desc');
+  document.getElementById('tabSpecs').classList.toggle('hidden', tab !== 'specs');
+}
+</script>
+</body>
+</html>

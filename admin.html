@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Панель управления — GreenTarif</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Login screen -->
+<div id="adminLogin" class="admin-login">
+  <div class="admin-login-card">
+    <div class="logo-icon" style="margin:0 auto 16px;width:56px;height:56px;font-size:28px">🌿</div>
+    <h2>GreenTarif Admin</h2>
+    <p>Введите пароль для доступа к панели управления</p>
+    <form id="adminLoginForm">
+      <div class="form-group" style="margin-bottom:16px">
+        <input type="password" name="password" placeholder="Пароль" style="width:100%;font-size:16px" required>
+      </div>
+      <p id="loginError" class="hidden" style="color:#E53935;font-size:13px;margin-bottom:12px">Неверный пароль</p>
+      <button type="submit" class="btn-submit">Войти</button>
+    </form>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:16px">
+      По умолчанию: <code style="background:var(--bg);padding:2px 6px;border-radius:4px">greentarif2024</code>
+    </p>
+  </div>
+</div>
+
+<!-- Main admin -->
+<div id="adminMain" class="hidden">
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+      <div class="admin-logo">🌿 GreenTarif</div>
+      <ul class="admin-nav">
+        <li><a href="#" data-tab="tabDashboard" class="active">📊 Дашборд</a></li>
+        <li><a href="#" data-tab="tabProducts">📦 Товары</a></li>
+        <li><a href="#" data-tab="tabOrders">🛒 Заказы <span id="ordersCount" style="background:rgba(255,255,255,0.2);border-radius:100px;padding:1px 8px;font-size:11px;margin-left:4px">0</span></a></li>
+        <li><a href="#" data-tab="tabSettings">⚙️ Настройки</a></li>
+        <li style="margin-top:auto;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px">
+          <a href="index.html">🌐 Перейти на сайт</a>
+        </li>
+        <li><a href="#" onclick="sessionStorage.removeItem('admin_auth');location.reload()">🚪 Выйти</a></li>
+      </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- Dashboard -->
+      <div id="tabDashboard" class="admin-tab-content">
+        <div class="admin-header">
+          <h2>📊 Дашборд</h2>
+          <span style="font-size:13px;color:var(--text-muted)" id="dashDate"></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">Заказов сегодня</div>
+            <div style="font-size:32px;font-weight:800;color:var(--green-dark)" id="statOrdersToday">0</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">Выручка за месяц</div>
+            <div style="font-size:32px;font-weight:800;color:var(--green-dark)" id="statRevenue">0 ₽</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">Новых заказов</div>
+            <div style="font-size:32px;font-weight:800;color:#1565C0" id="statNewOrders">0</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">Товаров активных</div>
+            <div style="font-size:32px;font-weight:800;color:var(--green-dark)" id="statProducts">0</div>
+          </div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">Последние заказы</h3>
+          <div id="recentOrders" style="color:var(--text-muted);font-size:14px;text-align:center;padding:20px">Нет заказов</div>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div id="tabProducts" class="admin-tab-content hidden">
+        <div class="admin-header">
+          <h2>📦 Товары</h2>
+          <button class="btn-green" onclick="document.getElementById('productFormSection').scrollIntoView({behavior:'smooth'})">+ Добавить товар</button>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;display:flex;gap:12px;flex-wrap:wrap">
+          <input type="search" id="productSearch" placeholder="🔍 Поиск по названию, артикулу..." style="border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:14px;flex:1;min-width:200px">
+          <select id="filterCategory" style="border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:14px;background:var(--white)">
+            <option value="">Все категории</option>
+          </select>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:28px">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th style="width:60px">Фото</th>
+                <th>Артикул</th>
+                <th>Название</th>
+                <th>Категория</th>
+                <th>Цена</th>
+                <th>Остаток</th>
+                <th>Актив</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <tr><td colspan="8" class="text-center text-muted" style="padding:40px">Загрузка...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Product form -->
+        <div id="productFormSection" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+          <h3 style="font-size:16px;font-weight:800;color:var(--green-dark);margin-bottom:20px">Добавить / редактировать товар</h3>
+          <form id="productForm">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
+              <div class="form-group"><label>Артикул *</label><input type="text" name="article" required placeholder="SP-400W-MONO"></div>
+              <div class="form-group"><label>Название *</label><input type="text" name="name" required placeholder="Солнечная панель 400 Вт"></div>
+              <div class="form-group"><label>Бренд</label><input type="text" name="brand" placeholder="JA Solar"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-bottom:16px">
+              <div class="form-group"><label>Цена (₽) *</label><input type="number" name="price" required min="0"></div>
+              <div class="form-group"><label>Старая цена (₽)</label><input type="number" name="old_price" min="0"></div>
+              <div class="form-group"><label>Остаток (шт)</label><input type="number" name="stock" min="0" value="0"></div>
+              <div class="form-group"><label>Мощность (Вт)</label><input type="number" name="power_wp" min="0"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+              <div class="form-group">
+                <label>Категория</label>
+                <select name="category_id">
+                  <option value="solar-panels">Солнечные панели</option>
+                  <option value="inverters">Инверторы</option>
+                  <option value="batteries">Аккумуляторы</option>
+                  <option value="mounting">Монтажные системы</option>
+                  <option value="accessories">Аксессуары</option>
+                </select>
+              </div>
+              <div class="form-group"><label>URL изображения</label><input type="url" name="image_url" placeholder="https://..."></div>
+            </div>
+            <div class="form-group" style="margin-bottom:16px">
+              <label>Описание</label>
+              <textarea name="description" rows="3" style="resize:vertical" placeholder="Описание товара..."></textarea>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600">
+                <input type="checkbox" name="active" checked style="accent-color:var(--green);width:18px;height:18px">
+                Товар активен
+              </label>
+            </div>
+            <div style="display:flex;gap:12px">
+              <button type="submit" class="btn-green" style="padding:12px 24px">💾 Сохранить</button>
+              <button type="reset" class="btn-danger" style="padding:12px 24px">✕ Сбросить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Orders -->
+      <div id="tabOrders" class="admin-tab-content hidden">
+        <div class="admin-header">
+          <h2>🛒 Заказы</h2>
+          <select id="filterStatus" style="border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:14px">
+            <option value="">Все статусы</option>
+            <option value="new">Новые</option>
+            <option value="processing">В работе</option>
+            <option value="delivered">Доставлены</option>
+            <option value="cancelled">Отменены</option>
+          </select>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:auto">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>№ заказа</th>
+                <th>Дата</th>
+                <th>Клиент</th>
+                <th>Позиций</th>
+                <th>Сумма</th>
+                <th>Статус</th>
+                <th>Изменить статус</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr><td colspan="7" class="text-center text-muted" style="padding:40px">Нет заказов</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div id="tabSettings" class="admin-tab-content hidden">
+        <div class="admin-header"><h2>⚙️ Настройки</h2></div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;max-width:600px">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;color:var(--green-dark)">Telegram Bot</h3>
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Bot Token</label>
+            <input type="text" id="settingToken" placeholder="ВАШ_ТОКЕН" style="font-family:monospace">
+          </div>
+          <div class="form-group" style="margin-bottom:16px">
+            <label>Chat ID</label>
+            <input type="text" id="settingChatId" placeholder="ВАШ_CHAT_ID" style="font-family:monospace">
+          </div>
+          <button class="btn-green" onclick="saveSettings()">💾 Сохранить</button>
+          <hr style="margin:24px 0;border:1px solid var(--border)">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;color:var(--green-dark)">Тест Telegram</h3>
+          <button class="btn-green" onclick="testTelegram()">📨 Отправить тестовое сообщение</button>
+          <hr style="margin:24px 0;border:1px solid var(--border)">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;color:var(--green-dark)">Данные</h3>
+          <button class="btn-danger" onclick="clearOrders()">🗑️ Очистить все заказы</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="notification" class="notification"></div>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+<script>
+// Dashboard stats
+function updateDashboard() {
+  const orders = JSON.parse(localStorage.getItem('greentarif_orders') || '[]');
+  const today = new Date().toDateString();
+  const todayOrders = orders.filter(o => new Date(o.created_at).toDateString() === today);
+  const newOrders = orders.filter(o => o.status === 'new');
+  const revenue = orders.reduce((s, o) => s + (o.total || 0), 0);
+
+  document.getElementById('statOrdersToday').textContent = todayOrders.length;
+  document.getElementById('statRevenue').textContent = revenue.toLocaleString('ru-RU') + ' ₽';
+  document.getElementById('statNewOrders').textContent = newOrders.length;
+  document.getElementById('dashDate').textContent = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  loadProducts().then(products => {
+    document.getElementById('statProducts').textContent = products.filter(p => p.active).length;
+  });
+
+  const recentEl = document.getElementById('recentOrders');
+  if (orders.length === 0) {
+    recentEl.textContent = 'Заказов пока нет';
+  } else {
+    recentEl.innerHTML = orders.slice(0, 5).map(o => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+        <div>
+          <strong>${o.order_id}</strong>
+          <span style="color:var(--text-muted);font-size:13px;margin-left:8px">${o.client_name}</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <span class="status-badge ${o.status}">${{new:'Новый',processing:'В работе',delivered:'Доставлен',cancelled:'Отменён'}[o.status]||o.status}</span>
+          <strong>${(o.total||0).toLocaleString('ru-RU')} ₽</strong>
+        </div>
+      </div>`).join('');
+  }
+}
+
+function saveSettings() {
+  const token = document.getElementById('settingToken').value;
+  const chatId = document.getElementById('settingChatId').value;
+  localStorage.setItem('tg_token', token);
+  localStorage.setItem('tg_chat_id', chatId);
+  showNotification('✅ Настройки сохранены');
+}
+
+async function testTelegram() {
+  const msg = '✅ <b>Тест GreenTarif Admin</b>\nTelegram-интеграция работает корректно! 🌿';
+  const ok = await sendToTelegram(msg);
+  showNotification(ok ? '✅ Сообщение отправлено' : '❌ Ошибка отправки. Проверьте токен.');
+}
+
+function clearOrders() {
+  if (confirm('Удалить все заказы? Это действие необратимо.')) {
+    localStorage.removeItem('greentarif_orders');
+    loadAdminOrders();
+    updateDashboard();
+    showNotification('Заказы очищены');
+  }
+}
+
+// Extend initAdmin to update dashboard
+const _origInitAdmin = window.initAdmin;
+window.initAdmin = function() {
+  if (_origInitAdmin) _origInitAdmin();
+  updateDashboard();
+
+  // Load saved settings
+  const token = localStorage.getItem('tg_token');
+  const chatId = localStorage.getItem('tg_chat_id');
+  if (token) document.getElementById('settingToken').value = token;
+  if (chatId) document.getElementById('settingChatId').value = chatId;
+};
+
+// Tab switch includes dashboard update
+const _origSwitch = window.switchTab;
+window.switchTab = function(tabId) {
+  if (_origSwitch) _origSwitch(tabId);
+  if (tabId === 'tabDashboard') updateDashboard();
+};
+</script>
+</body>
+</html>

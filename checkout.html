@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Оформление заказа — GreenTarif</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-main">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🌿</div>
+        <div class="logo-text"><strong>GreenTarif</strong><span>Солнечная энергия Кубани</span></div>
+      </a>
+      <div style="flex:1;display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;font-weight:600">
+        <span style="color:var(--green)">✔ Корзина</span>
+        <span>›</span>
+        <span style="color:var(--green-dark);font-weight:700">Оформление</span>
+        <span>›</span>
+        <span>Готово</span>
+      </div>
+      <div class="header-actions">
+        <a href="cart.html" style="color:var(--green);font-size:14px;font-weight:600;text-decoration:none">← Назад в корзину</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="breadcrumbs">
+    <a href="index.html">Главная</a><span class="sep">›</span>
+    <a href="cart.html">Корзина</a><span class="sep">›</span>
+    <span class="current">Оформление заказа</span>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="checkout-layout">
+    <!-- Form -->
+    <div id="checkoutForm">
+      <!-- Contact -->
+      <div class="checkout-form-card">
+        <h3>👤 Контактные данные</h3>
+        <div class="form-row">
+          <div class="form-group"><label>Имя *</label><input type="text" id="clientName" required placeholder="Иван"></div>
+          <div class="form-group"><label>Фамилия</label><input type="text" id="clientLastname" placeholder="Иванов"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Телефон *</label><input type="tel" id="clientPhone" required placeholder="+7 (918) 123-45-67"></div>
+          <div class="form-group"><label>Email</label><input type="email" id="clientEmail" placeholder="ivan@example.com"></div>
+        </div>
+      </div>
+
+      <!-- Delivery -->
+      <div class="checkout-form-card">
+        <h3>🚚 Доставка</h3>
+        <div class="delivery-options">
+          <label class="delivery-option">
+            <input type="radio" name="delivery" value="delivery" checked>
+            <div class="delivery-option-info">
+              <div class="delivery-option-name">Доставка по КК</div>
+              <div class="delivery-option-desc">1-3 рабочих дня, Краснодар и КК</div>
+            </div>
+            <span class="delivery-option-price" id="deliveryPrice1">2 500 ₽</span>
+          </label>
+          <label class="delivery-option">
+            <input type="radio" name="delivery" value="pickup">
+            <div class="delivery-option-info">
+              <div class="delivery-option-name">Самовывоз из Краснодара</div>
+              <div class="delivery-option-desc">ул. Красная, 139. Пн-Пт 9:00–18:00</div>
+            </div>
+            <span class="delivery-option-price" style="color:var(--green)">Бесплатно</span>
+          </label>
+          <label class="delivery-option">
+            <input type="radio" name="delivery" value="install">
+            <div class="delivery-option-info">
+              <div class="delivery-option-name">Монтаж под ключ</div>
+              <div class="delivery-option-desc">Доставка + профессиональная установка</div>
+            </div>
+            <span class="delivery-option-price">По договору</span>
+          </label>
+        </div>
+        <div id="addressBlock" style="margin-top:16px">
+          <div class="form-group"><label>Адрес доставки *</label><input type="text" id="deliveryAddress" placeholder="г. Краснодар, ул. Красная, 1, кв. 10"></div>
+        </div>
+      </div>
+
+      <!-- Payment -->
+      <div class="checkout-form-card">
+        <h3>💳 Способ оплаты</h3>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="payment" value="invoice" checked>
+            🏦 Счёт для юр. лиц
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="card">
+            💳 Банковская карта
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="cash">
+            💵 Наличными
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="sbp">
+            📱 СБП (QR)
+          </label>
+        </div>
+      </div>
+
+      <!-- Comment -->
+      <div class="checkout-form-card">
+        <h3>💬 Комментарий к заказу</h3>
+        <div class="form-group">
+          <textarea id="orderComment" rows="3" placeholder="Уточнения по доставке, монтажу или товарам..." style="resize:vertical"></textarea>
+        </div>
+      </div>
+
+      <button class="btn-submit" id="placeOrderBtn" style="width:100%;font-size:17px;padding:16px" onclick="placeOrder()">
+        ✅ Оформить заказ
+      </button>
+      <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px">
+        Нажимая кнопку, вы соглашаетесь с <a href="#" style="color:var(--green)">условиями обработки персональных данных</a>
+      </p>
+    </div>
+
+    <!-- Order summary -->
+    <div>
+      <div class="cart-summary" id="orderSummary">
+        <h3>Ваш заказ</h3>
+        <div id="checkoutItems" style="margin-bottom:16px;display:flex;flex-direction:column;gap:12px">
+          Загрузка...
+        </div>
+        <div class="summary-row"><span>Товары:</span><span id="chkSubtotal">0 ₽</span></div>
+        <div class="summary-row"><span>Доставка:</span><span id="chkDelivery">2 500 ₽</span></div>
+        <div class="summary-row total"><span>Итого:</span><span id="chkTotal">0 ₽</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal" style="text-align:center;max-width:440px">
+    <div style="font-size:80px;margin-bottom:16px">✅</div>
+    <h3 style="font-size:24px;font-weight:800;color:var(--green-dark);margin-bottom:8px">Заказ оформлен!</h3>
+    <p style="color:var(--text-muted);margin-bottom:8px">Номер вашего заказа: <strong id="successOrderId" style="color:var(--green-dark)"></strong></p>
+    <p style="color:var(--text-muted);margin-bottom:24px">Менеджер свяжется с вами в течение 30 минут для подтверждения и уточнения деталей доставки.</p>
+    <a href="index.html" class="btn-primary" style="display:inline-block">На главную</a>
+  </div>
+</div>
+
+<div id="notification" class="notification"></div>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+let checkoutProducts = [];
+let checkoutItems = [];
+
+(async function initCheckout() {
+  checkoutProducts = await loadProducts();
+  checkoutItems = cartLoad();
+
+  if (checkoutItems.length === 0) {
+    location.href = 'cart.html';
+    return;
+  }
+
+  renderCheckoutItems();
+  updateTotals();
+
+  document.querySelectorAll('[name="delivery"]').forEach(r => {
+    r.addEventListener('change', function () {
+      const addrBlock = document.getElementById('addressBlock');
+      addrBlock.style.display = this.value === 'pickup' ? 'none' : 'block';
+      updateTotals();
+    });
+  });
+})();
+
+function renderCheckoutItems() {
+  const wrap = document.getElementById('checkoutItems');
+  wrap.innerHTML = checkoutItems.map(item => {
+    const p = checkoutProducts.find(x => x.article === item.article);
+    if (!p) return '';
+    return `<div style="display:flex;gap:12px;align-items:center">
+      <img src="${p.image_url}" style="width:60px;height:48px;object-fit:cover;border-radius:6px;background:var(--bg)">
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600;line-height:1.3">${p.name}</div>
+        <div style="font-size:12px;color:var(--text-muted)">${item.qty} × ${formatPrice(p.price)}</div>
+      </div>
+      <div style="font-weight:700;font-size:14px;white-space:nowrap">${formatPrice(p.price * item.qty)}</div>
+    </div>`;
+  }).join('');
+}
+
+function getDeliveryCost() {
+  const method = document.querySelector('[name="delivery"]:checked')?.value || 'delivery';
+  if (method === 'pickup') return 0;
+  const subtotal = getSubtotal();
+  return subtotal >= STORE_CONFIG.freeDeliveryFrom ? 0 : STORE_CONFIG.deliveryCost;
+}
+
+function getSubtotal() {
+  return checkoutItems.reduce((sum, item) => {
+    const p = checkoutProducts.find(x => x.article === item.article);
+    return sum + (p ? p.price * item.qty : 0);
+  }, 0);
+}
+
+function updateTotals() {
+  const subtotal = getSubtotal();
+  const delivery = getDeliveryCost();
+  const total = subtotal + delivery;
+  document.getElementById('chkSubtotal').textContent = formatPrice(subtotal);
+  document.getElementById('chkDelivery').textContent = delivery === 0 ? 'Бесплатно' : formatPrice(delivery);
+  document.getElementById('chkTotal').textContent = formatPrice(total);
+}
+
+async function placeOrder() {
+  const name = document.getElementById('clientName').value.trim();
+  const phone = document.getElementById('clientPhone').value.trim();
+  if (!name || !phone) { showNotification('⚠️ Заполните имя и телефон'); return; }
+
+  const delivery = document.querySelector('[name="delivery"]:checked')?.value || 'delivery';
+  const payment = document.querySelector('[name="payment"]:checked')?.value || 'invoice';
+  const address = delivery !== 'pickup' ? (document.getElementById('deliveryAddress').value.trim() || 'Не указан') : 'Самовывоз';
+  const comment = document.getElementById('orderComment').value.trim();
+  const subtotal = getSubtotal();
+  const deliveryCost = getDeliveryCost();
+  const total = subtotal + deliveryCost;
+
+  const now = new Date();
+  const orderId = `ORD-${now.getFullYear()}-${String(Math.floor(Math.random() * 9000 + 1000)).padStart(4, '0')}`;
+
+  const items = checkoutItems.map(item => {
+    const p = checkoutProducts.find(x => x.article === item.article);
+    return { article: item.article, name: p?.name || item.article, qty: item.qty, price: p?.price || 0 };
+  });
+
+  const order = {
+    order_id: orderId,
+    status: 'new',
+    client_name: name + ' ' + (document.getElementById('clientLastname').value || '').trim(),
+    client_phone: phone,
+    client_email: document.getElementById('clientEmail').value.trim(),
+    telegram_id: '',
+    delivery_address: address,
+    delivery_type: delivery,
+    items,
+    subtotal,
+    delivery_cost: deliveryCost,
+    total,
+    payment_method: payment,
+    comment,
+    created_at: now.toISOString()
+  };
+
+  // Save to localStorage
+  const orders = JSON.parse(localStorage.getItem('greentarif_orders') || '[]');
+  orders.unshift(order);
+  localStorage.setItem('greentarif_orders', JSON.stringify(orders));
+
+  // Send Telegram
+  const itemsList = items.map(i => `  • ${i.name} × ${i.qty} = ${formatPrice(i.price * i.qty)}`).join('\n');
+  const deliveryLabels = { delivery: 'Доставка по КК', pickup: 'Самовывоз', install: 'Монтаж под ключ' };
+  const paymentLabels = { invoice: 'Счёт для юр. лиц', card: 'Банковская карта', cash: 'Наличными', sbp: 'СБП (QR)' };
+
+  const msg = `🛒 <b>Новый заказ ${orderId}</b>
+👤 Клиент: ${order.client_name}
+📞 Телефон: ${phone}
+📧 Email: ${order.client_email || 'не указан'}
+
+📦 Состав заказа:
+${itemsList}
+
+💰 Товары: ${formatPrice(subtotal)}
+🚚 Доставка: ${deliveryCost === 0 ? 'Бесплатно' : formatPrice(deliveryCost)}
+💵 Итого: <b>${formatPrice(total)}</b>
+
+🚛 Способ доставки: ${deliveryLabels[delivery] || delivery}
+📍 Адрес: ${address}
+💳 Оплата: ${paymentLabels[payment] || payment}
+${comment ? `💬 Комментарий: ${comment}` : ''}`;
+
+  await sendToTelegram(msg);
+
+  // Clear cart & show success
+  cartClear();
+  document.getElementById('successOrderId').textContent = orderId;
+  document.getElementById('successModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+</script>
+</body>
+</html>

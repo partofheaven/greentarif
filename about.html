@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О компании — GreenTarif</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="savings-ticker">☀️ Наши клиенты уже сэкономили: <span class="savings-amount" id="savingsAmount">0 ₽</span></div>
+      <div>📍 Краснодар, Сочи, Новороссийск</div>
+    </div>
+  </div>
+  <div class="header-main">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🌿</div>
+        <div class="logo-text"><strong>GreenTarif</strong><span>Солнечная энергия Кубани</span></div>
+      </a>
+      <nav id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="calculator.html">Калькулятор</a>
+        <a href="about.html">О компании</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="header-actions">
+        <div class="phone-link"><strong>+7 (861) 200-50-30</strong></div>
+        <button class="btn-callback" data-modal="callback">Заказать звонок</button>
+        <a href="cart.html" class="cart-btn">🛒 <span class="cart-count hidden" id="cartCount">0</span></a>
+        <button class="burger" id="burger">☰</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="about-hero">
+  <div class="container">
+    <h1>О компании GreenTarif</h1>
+    <p>Ведущий поставщик и интегратор солнечных электростанций в Краснодарском крае с 2018 года</p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:64px">
+      <div>
+        <h2 class="section-title">Наша миссия</h2>
+        <p style="font-size:16px;line-height:1.8;color:var(--text-muted);margin-bottom:16px">
+          Мы делаем солнечную энергию доступной для каждого жителя и предпринимателя Кубани. За 6 лет работы помогли более 500 семьям и бизнесам снизить расходы на электроэнергию и обрести энергетическую независимость.
+        </p>
+        <p style="font-size:16px;line-height:1.8;color:var(--text-muted)">
+          Краснодарский край — один из самых солнечных регионов России. Мы убеждены: каждая крыша в КК может стать источником чистой энергии и дохода для её владельца.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:var(--green-pale);border-radius:var(--radius);padding:24px;text-align:center">
+          <div style="font-size:40px;font-weight:800;color:var(--green-dark)">500+</div>
+          <div style="font-size:14px;color:var(--text-muted);margin-top:4px">Объектов сдано</div>
+        </div>
+        <div style="background:var(--yellow-pale);border-radius:var(--radius);padding:24px;text-align:center;border:1px solid var(--yellow)">
+          <div style="font-size:40px;font-weight:800;color:var(--yellow-dark)">6 лет</div>
+          <div style="font-size:14px;color:var(--text-muted);margin-top:4px">На рынке КК</div>
+        </div>
+        <div style="background:var(--green-pale);border-radius:var(--radius);padding:24px;text-align:center">
+          <div style="font-size:40px;font-weight:800;color:var(--green-dark)">12 лет</div>
+          <div style="font-size:14px;color:var(--text-muted);margin-top:4px">Гарантия панелей</div>
+        </div>
+        <div style="background:var(--yellow-pale);border-radius:var(--radius);padding:24px;text-align:center;border:1px solid var(--yellow)">
+          <div style="font-size:40px;font-weight:800;color:var(--yellow-dark)">3 МВт</div>
+          <div style="font-size:14px;color:var(--text-muted);margin-top:4px">Суммарная мощность</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why us -->
+    <h2 class="section-title">Почему выбирают GreenTarif?</h2>
+    <div class="why-grid" style="margin-bottom:64px">
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+        <div class="why-title">Официальный дилер</div>
+        <div class="why-text">Официальный партнёр JA Solar, Growatt и Pylontech. Гарантийное обслуживание напрямую от производителей. Только оригинальное оборудование.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">👨‍🔧</div>
+        <div class="why-title">Опытные монтажники</div>
+        <div class="why-text">Собственная монтажная бригада 12 человек. Все специалисты сертифицированы. Опыт монтажа на металлочерепице, профлисте, плоских и скатных кровлях.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📋</div>
+        <div class="why-title">Полное сопровождение</div>
+        <div class="why-text">Проектирование, согласование с сетевой компанией, монтаж, подключение к сети, получение разрешений — всё под ключ. Клиент получает готовую станцию.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌐</div>
+        <div class="why-title">Весь КК и соседние регионы</div>
+        <div class="why-text">Краснодар, Сочи, Анапа, Новороссийск, Армавир, Геленджик, Майкоп. Выезжаем в любую точку Краснодарского края и Адыгеи.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💳</div>
+        <div class="why-title">Рассрочка и лизинг</div>
+        <div class="why-text">Рассрочка 0% до 24 месяцев через банки-партнёры. Лизинг для юридических лиц. Возможность поэтапного ввода мощностей.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <div class="why-title">Мониторинг онлайн</div>
+        <div class="why-text">Все системы подключены к облачному мониторингу. Смотрите выработку и экономию в реальном времени через смартфон.</div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <h2 class="section-title">Наша команда</h2>
+    <p class="section-subtitle">Профессионалы с опытом в возобновляемой энергетике</p>
+    <div class="team-grid" style="margin-bottom:64px">
+      <div class="team-card">
+        <div class="team-avatar">👨‍💼</div>
+        <div class="team-name">Алексей Петров</div>
+        <div class="team-role">Генеральный директор</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👨‍🔬</div>
+        <div class="team-name">Сергей Иванов</div>
+        <div class="team-role">Главный инженер</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👩‍💻</div>
+        <div class="team-name">Мария Сидорова</div>
+        <div class="team-role">Менеджер по продажам</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👨‍🔧</div>
+        <div class="team-name">Виктор Козлов</div>
+        <div class="team-role">Бригадир монтажников</div>
+      </div>
+    </div>
+
+    <!-- Certificates -->
+    <h2 class="section-title">Сертификаты и лицензии</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      ${['Допуск СРО к электромонтажным работам', 'Официальный дилер JA Solar', 'Авторизованный партнёр Growatt', 'Сертификат ISO 9001:2015'].map(cert => `
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center">
+        <div style="font-size:36px;margin-bottom:8px">📜</div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">${cert}</div>
+      </div>`).join('')}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;text-align:center">
+  <div class="container">
+    <h2 style="font-size:32px;font-weight:800;margin-bottom:16px">Готовы начать экономить?</h2>
+    <p style="font-size:18px;opacity:0.9;margin-bottom:32px">Получите бесплатный расчёт и консультацию нашего инженера</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="calculator.html" class="btn-primary">☀️ Рассчитать экономию</a>
+      <button class="btn-outline" data-modal="callback">📞 Заказать звонок</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <a href="index.html" style="color:rgba(255,255,255,0.6)">← На главную</a>
+      <span style="color:rgba(255,255,255,0.5)">© 2024 GreenTarif</span>
+      <a href="contacts.html" style="color:rgba(255,255,255,0.6)">Контакты</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Modals -->
+<div class="modal-overlay" id="callbackModal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="modal-form">
+      <h3>📞 Заказать обратный звонок</h3>
+      <p>Перезвоним в течение 15 минут</p>
+      <form id="callbackForm">
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <div class="form-group"><label>Удобное время</label><select name="time"><option>Любое</option><option>9:00-12:00</option><option>12:00-15:00</option><option>15:00-18:00</option></select></div>
+        <button type="submit" class="btn-submit">Заказать звонок</button>
+      </form>
+    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заявка принята!</h3></div>
+  </div>
+</div>
+<div id="notification" class="notification"></div>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "solar-panels",
+    "name": "Солнечные панели",
+    "description": "Монокристаллические и поликристаллические панели ведущих брендов",
+    "icon": "☀️",
+    "sort": 100,
+    "active": true,
+    "subcategories": [
+      {"id": "mono", "name": "Монокристаллические"},
+      {"id": "poly", "name": "Поликристаллические"}
+    ]
+  },
+  {
+    "id": "inverters",
+    "name": "Инверторы",
+    "description": "Сетевые, автономные и гибридные инверторы",
+    "icon": "⚡",
+    "sort": 200,
+    "active": true,
+    "subcategories": [
+      {"id": "grid", "name": "Сетевые"},
+      {"id": "off-grid", "name": "Автономные"},
+      {"id": "hybrid", "name": "Гибридные"}
+    ]
+  },
+  {
+    "id": "batteries",
+    "name": "Аккумуляторы",
+    "description": "Литиевые аккумуляторные батареи для хранения энергии",
+    "icon": "🔋",
+    "sort": 300,
+    "active": true,
+    "subcategories": []
+  },
+  {
+    "id": "mounting",
+    "name": "Монтажные системы",
+    "description": "Крепления и конструкции для установки панелей",
+    "icon": "🔧",
+    "sort": 400,
+    "active": true,
+    "subcategories": []
+  },
+  {
+    "id": "accessories",
+    "name": "Аксессуары и кабели",
+    "description": "Кабели, коннекторы, защитное оборудование",
+    "icon": "🔌",
+    "sort": 500,
+    "active": true,
+    "subcategories": []
+  }
+]

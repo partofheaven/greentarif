@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог товаров — GreenTarif</title>
+<meta name="description" content="Каталог солнечных панелей, инверторов и аккумуляторов для Краснодарского края. Доставка и монтаж.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="savings-ticker">☀️ Наши клиенты уже сэкономили: <span class="savings-amount" id="savingsAmount">0 ₽</span></div>
+      <div>📍 Краснодар, Сочи, Новороссийск</div>
+    </div>
+  </div>
+  <div class="header-main">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🌿</div>
+        <div class="logo-text"><strong>GreenTarif</strong><span>Солнечная энергия Кубани</span></div>
+      </a>
+      <nav id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="calculator.html">Калькулятор</a>
+        <a href="about.html">О компании</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="header-actions">
+        <div class="phone-link"><strong>+7 (861) 200-50-30</strong><span>Бесплатная консультация</span></div>
+        <button class="btn-callback" data-modal="callback">Заказать звонок</button>
+        <a href="cart.html" class="cart-btn">🛒 <span>Корзина</span><span class="cart-count hidden" id="cartCount">0</span></a>
+        <button class="burger" id="burger">☰</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="breadcrumbs">
+    <a href="index.html">Главная</a>
+    <span class="sep">›</span>
+    <span class="current" id="breadcrumbCurrent">Каталог</span>
+  </nav>
+</div>
+
+<div class="container" style="padding-bottom:64px">
+  <div style="margin-bottom:24px">
+    <h1 style="font-size:28px;font-weight:800;color:var(--green-dark)" id="catalogTitle">Каталог товаров</h1>
+    <p style="color:var(--text-muted);margin-top:4px">Солнечные панели, инверторы и аккумуляторы в Краснодаре</p>
+  </div>
+
+  <div class="catalog-layout">
+    <!-- Sidebar -->
+    <aside class="catalog-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Категории</div>
+        <ul class="filter-list" id="categoryList">
+          <li><a href="catalog.html" class="active" data-cat="">Все товары <span class="filter-count" id="countAll">12</span></a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Бренд</div>
+        <ul class="filter-list" id="brandList"></ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Цена, ₽</div>
+        <div class="price-range">
+          <input type="number" id="priceMin" placeholder="От" min="0">
+          <span>—</span>
+          <input type="number" id="priceMax" placeholder="До" max="1000000">
+        </div>
+        <button class="btn-green" style="margin-top:8px;width:100%;justify-content:center" id="applyPrice">Применить</button>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Наличие</div>
+        <ul class="filter-list">
+          <li><label style="display:flex;align-items:center;gap:8px;padding:8px 12px;cursor:pointer;font-size:14px">
+            <input type="checkbox" id="inStockOnly" style="accent-color:var(--green)"> В наличии
+          </label></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main>
+      <div class="catalog-header">
+        <span class="catalog-count" id="catalogCount">Найдено товаров: 12</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="search" id="catalogSearch" placeholder="Поиск..." style="border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:14px;width:200px">
+          <select class="sort-select" id="sortSelect">
+            <option value="sort">По умолчанию</option>
+            <option value="price_asc">Цена: по возрастанию</option>
+            <option value="price_desc">Цена: по убыванию</option>
+            <option value="name">По названию</option>
+          </select>
+        </div>
+      </div>
+      <div class="products-grid" id="catalogGrid">
+        <div style="text-align:center;padding:60px;color:var(--text-muted);grid-column:1/-1">Загрузка...</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <a href="index.html" style="color:rgba(255,255,255,0.6)">← На главную</a>
+      <span style="color:rgba(255,255,255,0.5)">© 2024 GreenTarif</span>
+      <a href="contacts.html" style="color:rgba(255,255,255,0.6)">Контакты</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Modals -->
+<div class="modal-overlay" id="callbackModal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="modal-form">
+      <h3>📞 Заказать обратный звонок</h3>
+      <p>Перезвоним в течение 15 минут</p>
+      <form id="callbackForm">
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <div class="form-group"><label>Удобное время</label><select name="time"><option>Любое</option><option>9:00-12:00</option><option>12:00-15:00</option><option>15:00-18:00</option></select></div>
+        <button type="submit" class="btn-submit">Заказать звонок</button>
+      </form>
+    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заявка принята!</h3><p>Перезвоним в течение 15 минут</p></div>
+  </div>
+</div>
+<div class="modal-overlay" id="quickBuyModal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="modal-form">
+      <h3>⚡ Купить в 1 клик</h3>
+      <p id="quickBuyProductName" style="font-weight:700;color:var(--green-dark);margin-bottom:16px"></p>
+      <form id="quickBuyForm">
+        <input type="hidden" name="article" id="quickBuyArticle">
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <button type="submit" class="btn-submit">Оформить заказ</button>
+      </form>
+    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заказ принят!</h3><p>Менеджер свяжется в течение 30 минут</p></div>
+  </div>
+</div>
+<div id="notification" class="notification"></div>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+let allProducts = [];
+let activeFilters = { cat: '', brand: '', priceMin: 0, priceMax: Infinity, inStock: false, search: '', sort: 'sort' };
+
+(async function initCatalog() {
+  const cats = await loadCategories();
+  allProducts = await loadProducts();
+
+  // Read URL params
+  const params = new URLSearchParams(location.search);
+  const catParam = params.get('cat') || '';
+  if (catParam) {
+    activeFilters.cat = catParam;
+    const catObj = cats.find(c => c.id === catParam);
+    if (catObj) {
+      document.getElementById('catalogTitle').textContent = catObj.name;
+      document.getElementById('breadcrumbCurrent').textContent = catObj.name;
+    }
+  }
+
+  // Build category list
+  const catList = document.getElementById('categoryList');
+  const countAll = allProducts.filter(p => p.active).length;
+  document.getElementById('countAll').textContent = countAll;
+
+  cats.forEach(cat => {
+    const count = allProducts.filter(p => p.active && p.category_id === cat.id).length;
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="catalog.html?cat=${cat.id}" data-cat="${cat.id}" class="${catParam === cat.id ? 'active' : ''}">${cat.icon} ${cat.name} <span class="filter-count">${count}</span></a>`;
+    li.querySelector('a').addEventListener('click', e => {
+      e.preventDefault();
+      activeFilters.cat = cat.id;
+      document.getElementById('catalogTitle').textContent = cat.name;
+      document.querySelectorAll('.filter-list a[data-cat]').forEach(a => a.classList.remove('active'));
+      li.querySelector('a').classList.add('active');
+      renderCatalog();
+    });
+    catList.appendChild(li);
+  });
+
+  // All category click
+  catList.querySelector('[data-cat=""]').addEventListener('click', e => {
+    e.preventDefault();
+    activeFilters.cat = '';
+    document.getElementById('catalogTitle').textContent = 'Все товары';
+    document.querySelectorAll('.filter-list a[data-cat]').forEach(a => a.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    renderCatalog();
+  });
+
+  // Build brand list
+  const brands = [...new Set(allProducts.map(p => p.brand))];
+  const brandList = document.getElementById('brandList');
+  brands.forEach(brand => {
+    const count = allProducts.filter(p => p.active && p.brand === brand).length;
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="#" data-brand="${brand}">${brand} <span class="filter-count">${count}</span></a>`;
+    li.querySelector('a').addEventListener('click', e => {
+      e.preventDefault();
+      const a = e.currentTarget;
+      if (a.classList.contains('active')) {
+        a.classList.remove('active');
+        activeFilters.brand = '';
+      } else {
+        brandList.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+        a.classList.add('active');
+        activeFilters.brand = brand;
+      }
+      renderCatalog();
+    });
+    brandList.appendChild(li);
+  });
+
+  // Filters
+  document.getElementById('applyPrice').addEventListener('click', () => {
+    activeFilters.priceMin = parseInt(document.getElementById('priceMin').value) || 0;
+    activeFilters.priceMax = parseInt(document.getElementById('priceMax').value) || Infinity;
+    renderCatalog();
+  });
+  document.getElementById('inStockOnly').addEventListener('change', e => {
+    activeFilters.inStock = e.target.checked;
+    renderCatalog();
+  });
+  document.getElementById('catalogSearch').addEventListener('input', e => {
+    activeFilters.search = e.target.value.toLowerCase();
+    renderCatalog();
+  });
+  document.getElementById('sortSelect').addEventListener('change', e => {
+    activeFilters.sort = e.target.value;
+    renderCatalog();
+  });
+
+  renderCatalog();
+})();
+
+function renderCatalog() {
+  let products = allProducts.filter(p => p.active);
+  if (activeFilters.cat) products = products.filter(p => p.category_id === activeFilters.cat);
+  if (activeFilters.brand) products = products.filter(p => p.brand === activeFilters.brand);
+  if (activeFilters.priceMin) products = products.filter(p => p.price >= activeFilters.priceMin);
+  if (activeFilters.priceMax !== Infinity) products = products.filter(p => p.price <= activeFilters.priceMax);
+  if (activeFilters.inStock) products = products.filter(p => p.stock > 0);
+  if (activeFilters.search) products = products.filter(p =>
+    p.name.toLowerCase().includes(activeFilters.search) ||
+    p.article.toLowerCase().includes(activeFilters.search) ||
+    p.brand.toLowerCase().includes(activeFilters.search)
+  );
+
+  const sortMap = {
+    price_asc: (a, b) => a.price - b.price,
+    price_desc: (a, b) => b.price - a.price,
+    name: (a, b) => a.name.localeCompare(b.name, 'ru'),
+    sort: (a, b) => a.sort - b.sort
+  };
+  products.sort(sortMap[activeFilters.sort] || sortMap.sort);
+
+  const grid = document.getElementById('catalogGrid');
+  document.getElementById('catalogCount').textContent = `Найдено товаров: ${products.length}`;
+
+  if (products.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted)">
+      <div style="font-size:60px;margin-bottom:16px">🔍</div>
+      <h3>Товары не найдены</h3>
+      <p>Попробуйте изменить фильтры</p>
+    </div>`;
+  } else {
+    grid.innerHTML = products.map(buildProductCard).join('');
+  }
+}
+</script>
+</body>
+</html>

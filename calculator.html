@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор экономии — GreenTarif</title>
+<meta name="description" content="Рассчитайте экономию от солнечных панелей для вашего дома или бизнеса в Краснодарском крае.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="savings-ticker">☀️ Наши клиенты уже сэкономили: <span class="savings-amount" id="savingsAmount">0 ₽</span></div>
+      <div>📍 Краснодар, Сочи, Новороссийск</div>
+    </div>
+  </div>
+  <div class="header-main">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🌿</div>
+        <div class="logo-text"><strong>GreenTarif</strong><span>Солнечная энергия Кубани</span></div>
+      </a>
+      <nav id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="calculator.html">Калькулятор</a>
+        <a href="about.html">О компании</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="header-actions">
+        <div class="phone-link"><strong>+7 (861) 200-50-30</strong></div>
+        <button class="btn-callback" data-modal="callback">Заказать звонок</button>
+        <a href="cart.html" class="cart-btn">🛒 <span class="cart-count hidden" id="cartCount">0</span></a>
+        <button class="burger" id="burger">☰</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="calculator-hero">
+  <div class="container">
+    <h1>☀️ Калькулятор экономии</h1>
+    <p>Рассчитайте выгоду от солнечных панелей для вашего объекта в Краснодарском крае</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="calc-full-card">
+    <h2 style="font-size:22px;font-weight:800;color:var(--green-dark);margin-bottom:20px">Введите данные вашего объекта</h2>
+    <form id="fullCalcForm">
+      <div class="calc-full-grid">
+        <div class="form-group">
+          <label>💡 Средний счёт за электричество (₽/мес)</label>
+          <input type="number" name="monthlyBill" placeholder="5 000" min="100" max="1000000" required style="font-size:18px">
+        </div>
+        <div class="form-group">
+          <label>🏠 Тип объекта</label>
+          <select name="objectType" style="font-size:16px">
+            <option value="house">🏠 Частный дом</option>
+            <option value="dacha">🌳 Дача / коттедж</option>
+            <option value="business">🏭 Бизнес / производство</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>📐 Площадь объекта (м²) — необязательно</label>
+          <input type="number" name="area" placeholder="150" min="0">
+        </div>
+        <div class="form-group">
+          <label>📍 Ваш район КК</label>
+          <select name="region">
+            <option value="krasnodar">Краснодар</option>
+            <option value="sochi">Сочи</option>
+            <option value="anapa">Анапа</option>
+            <option value="novoross">Новороссийск</option>
+            <option value="armavir">Армавир</option>
+            <option value="other">Другой район</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" style="font-size:17px;padding:16px 40px">
+        ☀️ Рассчитать экономию
+      </button>
+    </form>
+
+    <!-- Result -->
+    <div id="fullCalcResult" class="calc-result-full">
+      <div class="calc-result-header">
+        <h3>📊 Результат расчёта для Краснодарского края</h3>
+        <p>Тариф ТКЭ 5.5 ₽/кВт·ч • Инсоляция 1400 кВт·ч/кВт в год</p>
+      </div>
+
+      <div class="calc-result-cards">
+        <div class="result-card">
+          <div class="result-card-icon">💰</div>
+          <div class="result-card-value" id="rcSaving">—</div>
+          <div class="result-card-label">Экономия в год</div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-icon">📅</div>
+          <div class="result-card-value" id="rcPayback">—</div>
+          <div class="result-card-label">Окупаемость</div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-icon">⚡</div>
+          <div class="result-card-value" id="rcPower">—</div>
+          <div class="result-card-label">Мощность системы</div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-icon">🌿</div>
+          <div class="result-card-value" id="rcCO2">—</div>
+          <div class="result-card-label">CO₂ сэкономлено/год</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
+        <div style="background:var(--bg);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:13px;color:var(--text-muted)">Панелей</div>
+          <div style="font-size:24px;font-weight:800;color:var(--green-dark)" id="rcPanels">—</div>
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:13px;color:var(--text-muted)">Инвертор</div>
+          <div style="font-size:24px;font-weight:800;color:var(--green-dark)" id="rcInverter">—</div>
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:13px;color:var(--text-muted)">Экономия в мес</div>
+          <div style="font-size:22px;font-weight:800;color:var(--green-dark)" id="rcMonthlySaving">—</div>
+        </div>
+      </div>
+
+      <div id="systemRecommendation"></div>
+
+      <div style="background:var(--green-pale);border:2px solid var(--green);border-radius:var(--radius);padding:24px;margin-top:16px">
+        <h3 style="font-size:18px;font-weight:800;color:var(--green-dark);margin-bottom:12px">
+          📋 Получить точный расчёт бесплатно
+        </h3>
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:16px">
+          Наш инженер выедет на объект, замерит крышу и ориентацию, учтёт ваш профиль потребления и подготовит точное техническое задание и смету.
+        </p>
+        <form id="calcPageLeadForm">
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <div class="form-group" style="flex:1;min-width:160px">
+              <label>Ваше имя</label>
+              <input type="text" name="name" required placeholder="Иван Иванов">
+            </div>
+            <div class="form-group" style="flex:1;min-width:160px">
+              <label>Телефон</label>
+              <input type="tel" name="phone" required placeholder="+7 (918) 123-45-67">
+            </div>
+            <div style="display:flex;align-items:flex-end">
+              <button type="submit" class="btn-primary" style="height:46px;white-space:nowrap">Получить расчёт</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Info blocks -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Как работает расчёт?</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">☀️</div>
+        <div class="why-title">Инсоляция Краснодара</div>
+        <div class="why-text">В Краснодарском крае ≈1400 кВт·ч на 1 кВт установленной мощности в год — один из лучших показателей в России. Данные NASA POWER.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💡</div>
+        <div class="why-title">Тариф ТКЭ</div>
+        <div class="why-text">Текущий тариф ТКЭ для населения Краснодарского края — 5.5 ₽/кВт·ч. Ежегодный рост тарифов ~7% дополнительно ускоряет окупаемость.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📐</div>
+        <div class="why-title">КПД системы</div>
+        <div class="why-text">В расчёте учитывается суммарный КПД системы 80%: потери в кабелях, инверторе, запылении панелей. Это консервативная, реалистичная оценка.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modals -->
+<div class="modal-overlay" id="callbackModal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="modal-form">
+      <h3>📞 Заказать обратный звонок</h3>
+      <p>Перезвоним в течение 15 минут</p>
+      <form id="callbackForm">
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <div class="form-group"><label>Удобное время</label><select name="time"><option>Любое</option><option>9:00-12:00</option><option>12:00-15:00</option><option>15:00-18:00</option></select></div>
+        <button type="submit" class="btn-submit">Заказать звонок</button>
+      </form>
+    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заявка принята!</h3></div>
+  </div>
+</div>
+<div id="notification" class="notification"></div>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <a href="index.html" style="color:rgba(255,255,255,0.6)">← На главную</a>
+      <span style="color:rgba(255,255,255,0.5)">© 2024 GreenTarif</span>
+      <a href="contacts.html" style="color:rgba(255,255,255,0.6)">Контакты</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calculator.js"></script>
+</body>
+</html>
