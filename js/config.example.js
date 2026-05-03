@@ -1,7 +1,9 @@
 // Telegram Bot Configuration
-// Получите токен у @BotFather в Telegram
-const TELEGRAM_TOKEN = 'ВАШ_ТОКЕН';
-const TELEGRAM_CHAT_ID = 'ВАШ_CHAT_ID';
+// 1. Создайте бота у @BotFather в Telegram
+// 2. Скопируйте этот файл в js/config.js
+// 3. Вставьте свои значения ниже
+const TELEGRAM_TOKEN = '';
+const TELEGRAM_CHAT_ID = '';
 
 // Admin Panel
 const ADMIN_PASSWORD = 'greentarif2024';
@@ -16,9 +18,8 @@ const STORE_CONFIG = {
   currency: 'RUB',
   deliveryCost: 2500,
   freeDeliveryFrom: 100000,
-  // Savings counter base value and growth rate
-  savingsBase: 4850000,          // Стартовое значение экономии (₽)
-  savingsPerMinute: 38,          // Рост в минуту (₽) — среднее по системам
+  savingsBase: 4850000,
+  savingsPerMinute: 38,
   savingsStartDate: '2024-01-01T00:00:00'
 };
 
