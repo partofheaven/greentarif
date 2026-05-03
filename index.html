@@ -4,222 +4,262 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GreenTarif — Солнечные панели в Краснодарском крае</title>
-<meta name="description" content="Продажа и монтаж солнечных панелей и инверторов в Краснодарском крае. Гарантия 12 лет. Окупаемость от 5 лет.">
+<meta name="description" content="Продажа и монтаж солнечных панелей, инверторов и аккумуляторов в Краснодарском крае. Гарантия 12 лет.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- ===================== HEADER ===================== -->
 <header class="header">
-  <div class="header-top">
-    <div class="container">
-      <div class="savings-ticker">
-        ☀️ Наши клиенты уже сэкономили:
-        <span class="savings-amount" id="savingsAmount">0 ₽</span>
-      </div>
-      <div style="display:flex;gap:16px;align-items:center">
-        <span>📍 Краснодар, Сочи, Новороссийск</span>
-        <span>⏰ Пн-Пт 9:00–18:00</span>
-      </div>
-    </div>
-  </div>
   <div class="header-main">
     <div class="container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">🌿</div>
-        <div class="logo-text">
-          <strong>GreenTarif</strong>
-          <span>Солнечная энергия Кубани</span>
-        </div>
+        <div class="logo-mark">🌿</div>
+        <span class="logo-name">GreenTarif</span>
       </a>
-      <nav id="mainNav">
-        <a href="index.html">Главная</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="calculator.html">Калькулятор</a>
-        <a href="about.html">О компании</a>
-        <a href="contacts.html">Контакты</a>
-      </nav>
-      <div class="header-actions">
-        <div class="phone-link">
-          <strong>+7 (861) 200-50-30</strong>
-          <span>Бесплатная консультация</span>
-        </div>
-        <button class="btn-callback" data-modal="callback">Заказать звонок</button>
-        <a href="cart.html" class="cart-btn">
-          🛒 <span>Корзина</span>
-          <span class="cart-count hidden" id="cartCount">0</span>
+      <div class="header-search">
+        <span class="header-search-icon">🔍</span>
+        <input type="search" id="headerSearch" placeholder="Солнечные панели, инверторы...">
+      </div>
+      <div class="header-right">
+        <a href="tel:+78612005030" class="header-phone">+7 (861) 200-50-30</a>
+        <a href="cart.html" class="header-cart">
+          🛒
+          <span class="cart-badge hidden" id="cartCount">0</span>
         </a>
         <button class="burger" id="burger">☰</button>
       </div>
     </div>
   </div>
+  <nav class="header-nav">
+    <div class="container">
+      <a href="catalog.html?cat=solar-panels">Солнечные панели</a>
+      <a href="catalog.html?cat=inverters">Инверторы</a>
+      <a href="catalog.html?cat=batteries">Аккумуляторы</a>
+      <a href="catalog.html?cat=mounting">Монтаж</a>
+      <a href="catalog.html?cat=accessories">Аксессуары</a>
+      <a href="calculator.html">Калькулятор</a>
+      <a href="about.html">О компании</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </nav>
 </header>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+  <div style="margin-top:48px">
+    <a href="catalog.html">Каталог</a>
+    <a href="catalog.html?cat=solar-panels">Солнечные панели</a>
+    <a href="catalog.html?cat=inverters">Инверторы</a>
+    <a href="catalog.html?cat=batteries">Аккумуляторы</a>
+    <a href="catalog.html?cat=mounting">Монтаж</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="about.html">О компании</a>
+    <a href="contacts.html">Контакты</a>
+    <a href="tel:+78612005030" style="color:var(--green);font-weight:700">+7 (861) 200-50-30</a>
+  </div>
+</div>
 
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge">🌞 №1 в Краснодарском крае</div>
-      <h1>Солнечные панели для домов и <span>бизнеса Кубани</span></h1>
-      <p>Монтаж под ключ. Гарантия 12 лет. Окупаемость от 5 лет.<br>330 солнечных дней в году — пора зарабатывать на солнце!</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><strong>330+</strong><span>Солнечных дней</span></div>
-        <div class="hero-stat"><strong>500+</strong><span>Объектов сдано</span></div>
-        <div class="hero-stat"><strong>12 лет</strong><span>Гарантия</span></div>
-        <div class="hero-stat"><strong>от 5 лет</strong><span>Окупаемость</span></div>
-      </div>
+      <div class="hero-eyebrow">☀️ Краснодарский край</div>
+      <h1>Солнечная энергия для вашего дома и бизнеса</h1>
+      <p>Монтаж под ключ, гарантия 12 лет. Окупаемость от 5 лет. 330 солнечных дней в году — лучшие условия в России.</p>
       <div class="hero-actions">
-        <a href="calculator.html" class="btn-primary">☀️ Рассчитать экономию</a>
-        <a href="catalog.html" class="btn-outline">📦 Перейти в каталог</a>
+        <a href="#selector" class="btn btn-primary">Подобрать оборудование</a>
+        <a href="catalog.html" class="btn btn-secondary">Перейти в каталог</a>
       </div>
     </div>
-    <div class="solar-hours-widget">
-      <div class="widget-title">🌍 Краснодар — прямо сейчас</div>
-      <div class="sun-animation">☀️</div>
-      <div class="solar-hours-big" id="solarHoursToday">0.0</div>
-      <div class="solar-hours-unit">солнечных часов сегодня</div>
-      <div class="solar-earned">
-        <div class="solar-earned-label">Наши клиенты заработали с утра:</div>
-        <div class="solar-earned-amount" id="solarEarnedToday">0 ₽</div>
-      </div>
-      <div class="solar-clients">Расчёт по 50 установленным системам в КК</div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== MINI CALCULATOR ===================== -->
-<section class="calc-section">
-  <div class="container">
-    <div class="calc-card">
-      <h2>⚡ Быстрый расчёт экономии</h2>
-      <p>Введите два параметра — получите результат мгновенно</p>
-      <form id="miniCalcForm">
-        <div class="calc-inputs">
-          <div class="form-group">
-            <label for="monthlyBill">Ваш счёт за электричество (₽/мес)</label>
-            <input type="number" id="monthlyBill" name="monthlyBill" placeholder="5000" min="100" max="500000">
-          </div>
-          <div class="form-group">
-            <label for="objectType">Тип объекта</label>
-            <select id="objectType" name="objectType">
-              <option value="house">🏠 Частный дом</option>
-              <option value="dacha">🌳 Дача / коттедж</option>
-              <option value="business">🏭 Бизнес / производство</option>
-            </select>
-          </div>
-          <button type="submit" class="btn-primary" style="white-space:nowrap;height:fit-content;padding:13px 20px">Рассчитать →</button>
-        </div>
-      </form>
-      <div class="calc-result" id="miniCalcResult">
-        <div class="calc-result-grid">
-          <div class="calc-result-item">
-            <div class="calc-result-value" id="resSaving">—</div>
-            <div class="calc-result-label">💰 Экономия в год</div>
-          </div>
-          <div class="calc-result-item">
-            <div class="calc-result-value" id="resPayback">—</div>
-            <div class="calc-result-label">📅 Окупаемость</div>
-          </div>
-          <div class="calc-result-item">
-            <div class="calc-result-value" id="resPower">—</div>
-            <div class="calc-result-label">⚡ Мощность системы</div>
-          </div>
-        </div>
-        <div style="text-align:center">
-          <button class="btn-primary" data-modal="calcLead" style="font-size:15px;padding:14px 32px">
-            📋 Получить бесплатный расчёт под ключ
-          </button>
-          <p style="font-size:12px;color:var(--text-muted);margin-top:8px">Менеджер свяжется с вами в течение 30 минут</p>
-        </div>
+    <div class="hero-visual">
+      <div class="hero-visual-inner">
+        <div style="font-size:80px;line-height:1">☀️</div>
+        <div style="margin-top:16px;font-size:15px;font-weight:600;color:var(--text-2)">330 солнечных дней в году</div>
+        <div style="font-size:13px;color:var(--text-3);margin-top:4px">Краснодарский край</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===================== CATEGORIES ===================== -->
-<section style="padding-top:0">
+<div class="categories-strip">
   <div class="container">
-    <h2 class="section-title">Категории товаров</h2>
-    <p class="section-subtitle">Всё для солнечной электростанции под ключ</p>
-    <div class="categories-grid">
-      <a href="catalog.html?cat=solar-panels" class="category-card">
-        <span class="category-icon">☀️</span>
-        <div class="category-name">Солнечные панели</div>
-        <div class="category-count">5 моделей</div>
-      </a>
-      <a href="catalog.html?cat=inverters" class="category-card">
-        <span class="category-icon">⚡</span>
-        <div class="category-name">Инверторы</div>
-        <div class="category-count">4 модели</div>
-      </a>
-      <a href="catalog.html?cat=batteries" class="category-card">
-        <span class="category-icon">🔋</span>
-        <div class="category-name">Аккумуляторы</div>
-        <div class="category-count">2 модели</div>
-      </a>
-      <a href="catalog.html?cat=mounting" class="category-card">
-        <span class="category-icon">🔧</span>
-        <div class="category-name">Монтажные системы</div>
-        <div class="category-count">1 комплект</div>
-      </a>
-      <a href="catalog.html?cat=accessories" class="category-card">
-        <span class="category-icon">🔌</span>
-        <div class="category-name">Аксессуары</div>
-        <div class="category-count">Кабели и разъёмы</div>
-      </a>
+    <a href="catalog.html?cat=solar-panels" class="cat-chip">
+      <span class="cat-chip-icon">☀️</span>
+      Солнечные панели
+    </a>
+    <a href="catalog.html?cat=inverters" class="cat-chip">
+      <span class="cat-chip-icon">⚡</span>
+      Инверторы
+    </a>
+    <a href="catalog.html?cat=batteries" class="cat-chip">
+      <span class="cat-chip-icon">🔋</span>
+      Аккумуляторы
+    </a>
+    <a href="catalog.html?cat=mounting" class="cat-chip">
+      <span class="cat-chip-icon">🔧</span>
+      Монтажные системы
+    </a>
+    <a href="catalog.html?cat=accessories" class="cat-chip">
+      <span class="cat-chip-icon">🔌</span>
+      Аксессуары
+    </a>
+  </div>
+</div>
+
+<!-- ===================== SOLAR DAYS WIDGET ===================== -->
+<section class="tight">
+  <div class="container">
+    <div class="solar-widget">
+      <div>
+        <div class="section-label">Краснодар — прямо сейчас</div>
+        <h2 class="section-title" style="margin-bottom:24px">Солнечная статистика</h2>
+        <div class="solar-stats">
+          <div class="solar-stat">
+            <div class="solar-stat-value">330</div>
+            <div class="solar-stat-label">солнечных дней/год</div>
+          </div>
+          <div class="solar-stat">
+            <div class="solar-stat-value">2300<span>+</span></div>
+            <div class="solar-stat-label">часов солнца в год</div>
+          </div>
+          <div class="solar-stat">
+            <div class="solar-stat-value" id="todayHours">—</div>
+            <div class="solar-stat-label">часов сегодня</div>
+          </div>
+        </div>
+        <!-- Monthly bar chart -->
+        <div class="solar-bar-chart" id="solarBarChart"></div>
+        <div class="solar-today">
+          <div class="solar-today-item">
+            <div class="solar-today-val" id="solarEarnedToday">—</div>
+            <div class="solar-today-label">Заработали клиенты сегодня</div>
+          </div>
+          <div class="solar-today-item">
+            <div class="solar-today-val" id="solarMonthKwh">—</div>
+            <div class="solar-today-label">кВт·ч выработано в этом месяце</div>
+          </div>
+          <div class="solar-today-item">
+            <div class="solar-today-val" id="solarSavedTotal">—</div>
+            <div class="solar-today-label">Сэкономлено всего клиентами</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center">
+        <div class="solar-sun" id="solarSun">☀️</div>
+        <div style="margin-top:16px;font-size:15px;font-weight:600;color:var(--text-2)" id="solarPhrase">Загрузка...</div>
+        <div style="margin-top:24px;padding:20px;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border-light)">
+          <div style="font-size:12px;color:var(--text-3);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Тариф ТКЭ Краснодар</div>
+          <div style="font-size:28px;font-weight:700">5.5 ₽<span style="font-size:14px;font-weight:500;color:var(--text-2)">/кВт·ч</span></div>
+          <div style="font-size:12px;color:var(--text-3);margin-top:4px">Ежегодный рост ~7%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EQUIPMENT SELECTOR ===================== -->
+<section class="selector-section" id="selector">
+  <div class="container">
+    <div class="selector-card">
+      <h2>Подберите оборудование</h2>
+      <p>Укажите площадь кровли и потребление электроэнергии — система рассчитает оптимальную комплектацию</p>
+
+      <div class="selector-inputs">
+        <div class="range-group">
+          <label>Площадь кровли под панели</label>
+          <div class="range-row">
+            <input type="range" id="roofArea" min="10" max="300" value="50" step="5">
+            <span class="range-val"><span id="roofAreaVal">50</span> м²</span>
+          </div>
+        </div>
+        <div class="range-group">
+          <label>Потребление в месяц</label>
+          <div class="range-row">
+            <input type="range" id="energyConsump" min="100" max="5000" value="500" step="50">
+            <span class="range-val"><span id="energyConsumpVal">500</span> кВт·ч</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="selector-result visible" id="selectorResult">
+        <div class="selector-result-grid">
+          <div class="selector-result-item">
+            <div class="selector-result-val" id="srPower">—</div>
+            <div class="selector-result-label">Мощность системы</div>
+          </div>
+          <div class="selector-result-item">
+            <div class="selector-result-val" id="srPanels">—</div>
+            <div class="selector-result-label">Панелей 400 Вт</div>
+          </div>
+          <div class="selector-result-item">
+            <div class="selector-result-val" id="srSaving">—</div>
+            <div class="selector-result-label">Экономия в год</div>
+          </div>
+          <div class="selector-result-item">
+            <div class="selector-result-val" id="srPayback">—</div>
+            <div class="selector-result-label">Окупаемость</div>
+          </div>
+        </div>
+
+        <div class="selector-equipment" id="selectorEquipment"></div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-primary" data-modal="calcLead">Получить точный расчёт</button>
+          <a href="catalog.html" class="btn btn-secondary">Посмотреть товары</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ===================== HITS ===================== -->
-<section style="background:var(--bg)">
+<section>
   <div class="container">
-    <h2 class="section-title">🔥 Хиты продаж</h2>
-    <p class="section-subtitle">Самые популярные решения для Краснодарского края</p>
-    <div class="products-grid" id="hitsGrid">
-      <div style="text-align:center;padding:40px;color:var(--text-muted)">Загрузка...</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+      <div>
+        <div class="section-label">Популярное</div>
+        <h2 class="section-title" style="margin-bottom:0">Хиты продаж</h2>
+      </div>
+      <a href="catalog.html" class="btn btn-secondary btn-sm">Весь каталог →</a>
     </div>
-    <div style="text-align:center;margin-top:32px">
-      <a href="catalog.html" class="btn-green" style="padding:14px 36px;font-size:15px">Весь каталог →</a>
+    <div class="products-grid" id="hitsGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-3)">Загрузка...</div>
     </div>
   </div>
 </section>
 
-<!-- ===================== WHY KRASNODAR ===================== -->
-<section class="why-section">
+<!-- ===================== WHY ===================== -->
+<section class="alt">
   <div class="container">
-    <h2 class="section-title">🌞 Почему Краснодарский край — идеальное место для солнечной энергии?</h2>
-    <p class="section-subtitle">Природные условия Кубани делают солнечную генерацию максимально выгодной</p>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon">☀️</div>
-        <div class="why-title">330 солнечных дней в году</div>
-        <div class="why-text">Краснодарский край — один из самых солнечных регионов России. Уровень инсоляции 1400 кВт·ч/кВт в год сравним с южной Европой.</div>
+    <div class="section-label">Преимущества</div>
+    <h2 class="section-title">Почему Краснодарский край?</h2>
+    <p class="section-sub">Природные и экономические условия Кубани делают солнечную генерацию максимально выгодной инвестицией</p>
+
+    <div class="stats-grid" style="margin-bottom:24px">
+      <div class="stat-card"><div class="stat-value">330</div><div class="stat-label">солнечных дней в году</div></div>
+      <div class="stat-card"><div class="stat-value">5.5<small> ₽</small></div><div class="stat-label">тариф ТКЭ за кВт·ч</div></div>
+      <div class="stat-card"><div class="stat-value">5–7<small> лет</small></div><div class="stat-label">срок окупаемости</div></div>
+      <div class="stat-card"><div class="stat-value">500<small>+</small></div><div class="stat-label">объектов сдано нами</div></div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">☀️</div>
+        <div class="feature-title">1400 кВт·ч/кВт·год</div>
+        <div class="feature-text">Уровень инсоляции Краснодарского края сравним с южной Европой — один из лучших показателей в России.</div>
       </div>
-      <div class="why-card">
-        <div class="why-icon">💰</div>
-        <div class="why-title">Высокие тарифы ТКЭ</div>
-        <div class="why-text">Тарифы на электроэнергию в КК: 5.5 ₽/кВт·ч для населения и 8-12 ₽/кВт·ч для бизнеса. Срок окупаемости солнечной СЭС — 5-7 лет.</div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <div class="feature-title">Растущие тарифы</div>
+        <div class="feature-text">Тариф ТКЭ растёт на 7% в год. Чем раньше установите систему — тем быстрее окупите и тем больше сэкономите.</div>
       </div>
-      <div class="why-card">
-        <div class="why-icon">📋</div>
-        <div class="why-title">Льготы и субсидии</div>
-        <div class="why-text">Программы поддержки возобновляемой энергетики КК. Возможность продажи излишков в сеть по зелёному тарифу через «Россети Кубань».</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🌡️</div>
-        <div class="why-title">Мягкий климат</div>
-        <div class="why-text">Умеренная зима без сильных морозов увеличивает выработку в холодное время — панели не теряют эффективность при низких температурах.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🏗️</div>
-        <div class="why-title">Монтаж под ключ в КК</div>
-        <div class="why-text">Наша бригада работает по всему Краснодарскому краю: Краснодар, Сочи, Анапа, Новороссийск, Армавир, Майкоп. Сдача в течение 1-3 дней.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🌿</div>
-        <div class="why-title">Экология и имидж</div>
-        <div class="why-text">Сокращение выброса CO₂ на 3-5 тонн в год. Для бизнеса — зелёный имидж и соответствие ESG-критериям для партнёров и банков.</div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title">Зелёный тариф</div>
+        <div class="feature-text">Продажа излишков электроэнергии в сеть через «Россети Кубань». Монтаж под ключ, согласование с сетевой.</div>
       </div>
     </div>
   </div>
@@ -228,31 +268,32 @@
 <!-- ===================== PROJECTS ===================== -->
 <section>
   <div class="container">
-    <h2 class="section-title">🏗️ Наши реализованные объекты</h2>
-    <p class="section-subtitle">Более 500 установленных систем по Краснодарскому краю</p>
+    <div class="section-label">Портфолио</div>
+    <h2 class="section-title">Реализованные объекты</h2>
+    <p class="section-sub">Более 500 установленных систем по Краснодарскому краю с 2018 года</p>
     <div class="projects-grid">
       <div class="project-card">
-        <img class="project-img" src="https://placehold.co/600x450/2E7D32/white?text=Частный+дом+Краснодар" alt="Краснодар">
+        <img class="project-img" src="https://placehold.co/600x450/E8F5E9/2E7D32?text=Краснодар+10+кВт" alt="Краснодар">
         <div class="project-overlay">
           <div class="project-city">г. Краснодар</div>
           <div class="project-name">Частный дом, ул. Ставропольская</div>
-          <div class="project-power">⚡ 10 кВт • Гибридная система</div>
+          <div class="project-power">10 кВт · Гибридная система</div>
         </div>
       </div>
       <div class="project-card">
-        <img class="project-img" src="https://placehold.co/600x450/1B5E20/white?text=Гостиница+Сочи" alt="Сочи">
+        <img class="project-img" src="https://placehold.co/600x450/E8F5E9/1B5E20?text=Сочи+30+кВт" alt="Сочи">
         <div class="project-overlay">
           <div class="project-city">г. Сочи</div>
-          <div class="project-name">Мини-гостиница, ул. Приморская</div>
-          <div class="project-power">⚡ 30 кВт • Сетевая система</div>
+          <div class="project-name">Мини-гостиница, Приморская</div>
+          <div class="project-power">30 кВт · Сетевая система</div>
         </div>
       </div>
       <div class="project-card">
-        <img class="project-img" src="https://placehold.co/600x450/388E3C/white?text=Агрокомплекс+Анапа" alt="Анапа">
+        <img class="project-img" src="https://placehold.co/600x450/E8F5E9/388E3C?text=Анапа+50+кВт" alt="Анапа">
         <div class="project-overlay">
           <div class="project-city">г. Анапа</div>
-          <div class="project-name">Агрокомплекс, поместье «Раевское»</div>
-          <div class="project-power">⚡ 50 кВт • Автономная система</div>
+          <div class="project-name">Агрокомплекс, п. Раевская</div>
+          <div class="project-power">50 кВт · Автономная система</div>
         </div>
       </div>
     </div>
@@ -260,42 +301,33 @@
 </section>
 
 <!-- ===================== REVIEWS ===================== -->
-<section style="background:var(--bg)">
+<section class="alt">
   <div class="container">
-    <h2 class="section-title">💬 Отзывы клиентов из КК</h2>
-    <p class="section-subtitle">Реальные истории экономии от наших клиентов</p>
-    <div class="reviews-grid">
+    <div class="section-label">Отзывы</div>
+    <h2 class="section-title">Клиенты из Краснодарского края</h2>
+    <div class="reviews-grid" style="margin-top:32px">
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <div class="review-text">«Поставили систему 10 кВт в июне. К сентябрю счёт за свет упал с 8000 до 300 рублей. Летом вообще не платим — даже излишки отдаём в сеть. Монтажники приехали в срок, сделали всё аккуратно. Рекомендую!»</div>
+        <div class="review-text">«Поставили 10 кВт в июне. К сентябрю счёт упал с 8000 до 300 рублей. Летом вообще не платим — отдаём излишки в сеть. Монтажники сделали всё аккуратно, в срок.»</div>
         <div class="review-author">
           <div class="review-avatar">А</div>
-          <div>
-            <div class="review-name">Александр Н.</div>
-            <div class="review-city">г. Краснодар • Система 10 кВт</div>
-          </div>
+          <div><div class="review-name">Александр Н.</div><div class="review-city">Краснодар · 10 кВт</div></div>
         </div>
       </div>
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
-        <div class="review-text">«У нас база отдыха в Анапе. Летом расход электричества огромный — кондиционеры, насосы. Поставили 30 кВт. Счёт снизился на 70%. За два лета полностью окупили вложения. Спасибо GreenTarif!»</div>
+        <div class="review-text">«У нас база отдыха в Анапе, летом огромный расход. Поставили 30 кВт. Счёт снизился на 70%. За два лета полностью окупили. Спасибо GreenTarif!»</div>
         <div class="review-author">
           <div class="review-avatar">М</div>
-          <div>
-            <div class="review-name">Марина К.</div>
-            <div class="review-city">г. Анапа • Система 30 кВт</div>
-          </div>
+          <div><div class="review-name">Марина К.</div><div class="review-city">Анапа · 30 кВт</div></div>
         </div>
       </div>
       <div class="review-card">
         <div class="review-stars">★★★★☆</div>
-        <div class="review-text">«Дача в Крымском районе, свет часто отключают. Взяли гибридную систему 5 кВт с аккумулятором. Теперь отключения нас не касаются. Зимой немного меньше отдача, но летом с запасом. Отличная инвестиция.»</div>
+        <div class="review-text">«Дача в Крымском районе, свет часто отключают. Гибридная система 5 кВт с аккумулятором — теперь отключения не замечаем. Отличная инвестиция.»</div>
         <div class="review-author">
           <div class="review-avatar">В</div>
-          <div>
-            <div class="review-name">Виктор С.</div>
-            <div class="review-city">Крымский р-н • Система 5 кВт</div>
-          </div>
+          <div><div class="review-name">Виктор С.</div><div class="review-city">Крымский р-н · 5 кВт</div></div>
         </div>
       </div>
     </div>
@@ -308,15 +340,14 @@
     <div class="footer-grid">
       <div>
         <a href="index.html" class="footer-logo">
-          <div class="footer-logo-icon">🌿</div>
-          <div class="footer-logo-text"><strong>GreenTarif</strong></div>
+          <div class="footer-logo-mark">🌿</div>
+          <span class="footer-logo-name">GreenTarif</span>
         </a>
-        <p class="footer-desc">Профессиональная продажа и монтаж солнечных электростанций в Краснодарском крае. Работаем с 2018 года, более 500 объектов.</p>
+        <p class="footer-desc">Профессиональная продажа и монтаж солнечных электростанций в Краснодарском крае. С 2018 года, более 500 объектов.</p>
         <div class="footer-social">
-          <a href="#" class="social-btn">📱</a>
-          <a href="#" class="social-btn">💬</a>
-          <a href="#" class="social-btn">📷</a>
-          <a href="#" class="social-btn">🎬</a>
+          <a href="#" class="social-link">📱</a>
+          <a href="#" class="social-link">💬</a>
+          <a href="#" class="social-link">📷</a>
         </div>
       </div>
       <div class="footer-col">
@@ -341,16 +372,15 @@
       </div>
       <div class="footer-col">
         <h4>Контакты</h4>
-        <div class="footer-contact">📍 г. Краснодар, ул. Красная, 139</div>
+        <div class="footer-contact">📍 Краснодар, ул. Красная, 139</div>
         <div class="footer-contact">📞 <a href="tel:+78612005030">+7 (861) 200-50-30</a></div>
         <div class="footer-contact">📧 <a href="mailto:info@greentarif.ru">info@greentarif.ru</a></div>
-        <div class="footer-contact">⏰ Пн-Пт: 9:00–18:00</div>
-        <div class="footer-contact">⏰ Сб: 10:00–16:00</div>
+        <div class="footer-contact">⏰ Пн–Пт 9:00–18:00</div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2024 GreenTarif. Все права защищены.</span>
-      <span>ИНН 2308123456 • ООО «ГринТариф»</span>
+      <span>ООО «ГринТариф» · ИНН 2308123456</span>
     </div>
   </div>
 </footer>
@@ -360,34 +390,16 @@
   <div class="modal">
     <button class="modal-close">✕</button>
     <div class="modal-form">
-      <h3>📞 Заказать обратный звонок</h3>
-      <p>Наш менеджер перезвонит вам в течение 15 минут</p>
+      <h3>Заказать звонок</h3>
+      <p>Перезвоним в течение 15 минут</p>
       <form id="callbackForm">
-        <div class="form-group">
-          <label>Ваше имя</label>
-          <input type="text" name="name" placeholder="Иван Иванов" required>
-        </div>
-        <div class="form-group">
-          <label>Телефон</label>
-          <input type="tel" name="phone" placeholder="+7 (918) 123-45-67" required>
-        </div>
-        <div class="form-group">
-          <label>Удобное время</label>
-          <select name="time">
-            <option value="Любое">Любое</option>
-            <option value="9:00-12:00">9:00–12:00</option>
-            <option value="12:00-15:00">12:00–15:00</option>
-            <option value="15:00-18:00">15:00–18:00</option>
-          </select>
-        </div>
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <div class="form-group"><label>Удобное время</label><select name="time"><option>Любое</option><option>9:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option></select></div>
         <button type="submit" class="btn-submit">Заказать звонок</button>
       </form>
     </div>
-    <div class="modal-success hidden">
-      <div class="success-icon">✅</div>
-      <h3>Заявка принята!</h3>
-      <p>Перезвоним в течение 15 минут</p>
-    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заявка принята!</h3><p>Перезвоним в течение 15 минут</p></div>
   </div>
 </div>
 
@@ -395,25 +407,15 @@
   <div class="modal">
     <button class="modal-close">✕</button>
     <div class="modal-form">
-      <h3>☀️ Получить расчёт под ключ</h3>
-      <p>Наш инженер подготовит точный расчёт с учётом вашего объекта и расположения</p>
+      <h3>Получить точный расчёт</h3>
+      <p>Инженер подготовит коммерческое предложение под ваш объект</p>
       <form id="calcLeadForm">
-        <div class="form-group">
-          <label>Ваше имя</label>
-          <input type="text" name="name" placeholder="Иван Иванов" required>
-        </div>
-        <div class="form-group">
-          <label>Телефон</label>
-          <input type="tel" name="phone" placeholder="+7 (918) 123-45-67" required>
-        </div>
-        <button type="submit" class="btn-submit">Получить бесплатный расчёт</button>
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
+        <button type="submit" class="btn-submit">Отправить заявку</button>
       </form>
     </div>
-    <div class="modal-success hidden">
-      <div class="success-icon">✅</div>
-      <h3>Заявка отправлена!</h3>
-      <p>Инженер свяжется с вами в течение 30 минут</p>
-    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заявка отправлена!</h3><p>Инженер свяжется в течение 30 минут</p></div>
   </div>
 </div>
 
@@ -421,26 +423,16 @@
   <div class="modal">
     <button class="modal-close">✕</button>
     <div class="modal-form">
-      <h3>⚡ Купить в 1 клик</h3>
-      <p id="quickBuyProductName" style="font-weight:700;color:var(--green-dark);margin-bottom:16px"></p>
+      <h3>Купить в 1 клик</h3>
+      <p id="quickBuyProductName" style="font-weight:700;color:var(--green);margin-bottom:16px"></p>
       <form id="quickBuyForm">
         <input type="hidden" name="article" id="quickBuyArticle">
-        <div class="form-group">
-          <label>Ваше имя</label>
-          <input type="text" name="name" placeholder="Иван Иванов" required>
-        </div>
-        <div class="form-group">
-          <label>Телефон</label>
-          <input type="tel" name="phone" placeholder="+7 (918) 123-45-67" required>
-        </div>
+        <div class="form-group"><label>Имя</label><input type="text" name="name" required placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required placeholder="+7 (918) 123-45-67"></div>
         <button type="submit" class="btn-submit">Оформить заказ</button>
       </form>
     </div>
-    <div class="modal-success hidden">
-      <div class="success-icon">✅</div>
-      <h3>Заказ принят!</h3>
-      <p>Менеджер свяжется с вами в течение 30 минут</p>
-    </div>
+    <div class="modal-success hidden"><div class="success-icon">✅</div><h3>Заказ принят!</h3><p>Менеджер свяжется в течение 30 минут</p></div>
   </div>
 </div>
 
@@ -450,14 +442,175 @@
 <script src="js/cart.js"></script>
 <script src="js/main.js"></script>
 <script>
+// ---- Solar Days Widget ----
+(function initSolarWidget() {
+  const monthNames = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
+  // Avg sunshine hours per month in Krasnodar
+  const sunHours = [92, 118, 165, 210, 266, 290, 320, 306, 234, 155, 80, 68];
+  // Peak solar hours per month (for energy calc)
+  const peakHours = [3.0, 3.8, 4.8, 5.5, 6.2, 6.8, 7.0, 6.5, 5.2, 4.0, 2.8, 2.5];
+
+  const now = new Date();
+  const month = now.getMonth();
+  const hour = now.getHours() + now.getMinutes() / 60;
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+
+  // Sunrise/sunset approximation for Krasnodar (45°N)
+  const daylight = [8.5, 9.8, 11.5, 13.5, 15.2, 15.8, 15.5, 14.0, 12.0, 10.0, 8.3, 7.8];
+  const sunrise = 12 - daylight[month] / 2;
+  const sunset = 12 + daylight[month] / 2;
+  const fraction = Math.max(0, Math.min(1, (hour - sunrise) / (sunset - sunrise)));
+  const todayHours = (peakHours[month] * fraction).toFixed(1);
+
+  // Clients stats (50 systems, avg 5 kW each)
+  const earnedToday = Math.floor(parseFloat(todayHours) * 5 * SOLAR_CALC.tariff * 50);
+  const monthKwh = Math.floor(dayOfYear / 365 * 50 * 5 * SOLAR_CALC.insolation);
+
+  const start = new Date(STORE_CONFIG.savingsStartDate).getTime();
+  const minutesElapsed = (Date.now() - start) / 60000;
+  let savedTotal = Math.floor(STORE_CONFIG.savingsBase + minutesElapsed * STORE_CONFIG.savingsPerMinute);
+
+  document.getElementById('todayHours').textContent = todayHours;
+  document.getElementById('solarEarnedToday').textContent = earnedToday.toLocaleString('ru-RU') + ' ₽';
+  document.getElementById('solarMonthKwh').textContent = monthKwh.toLocaleString('ru-RU') + ' кВт';
+
+  const totalEl = document.getElementById('solarSavedTotal');
+  totalEl.textContent = savedTotal.toLocaleString('ru-RU') + ' ₽';
+  setInterval(() => {
+    savedTotal += Math.round(STORE_CONFIG.savingsPerMinute / 60);
+    totalEl.textContent = savedTotal.toLocaleString('ru-RU') + ' ₽';
+  }, 1000);
+
+  // Sun emoji and phrase
+  const phrases = ['Отличный день для выработки', 'Солнце работает на вас', 'Панели на полную мощность', 'Идеальные условия в КК'];
+  const sunEl = document.getElementById('solarSun');
+  const phraseEl = document.getElementById('solarPhrase');
+
+  if (hour < sunrise || hour > sunset) {
+    sunEl.textContent = '🌙';
+    phraseEl.textContent = 'Ночь — системы в режиме аккумулятора';
+  } else if (fraction < 0.3) {
+    sunEl.textContent = '🌅';
+    phraseEl.textContent = 'Утро — выработка нарастает';
+  } else if (fraction > 0.7) {
+    sunEl.textContent = '🌇';
+    phraseEl.textContent = 'Вечер — аккумуляторы заряжены';
+  } else {
+    sunEl.textContent = '☀️';
+    phraseEl.textContent = phrases[month % phrases.length];
+  }
+
+  // Bar chart
+  const chart = document.getElementById('solarBarChart');
+  const maxH = Math.max(...sunHours);
+  chart.innerHTML = sunHours.map((h, i) => {
+    const heightPct = (h / maxH * 100).toFixed(0);
+    const cls = i === month ? 'current' : (i < month ? 'past' : '');
+    return `<div class="solar-bar-wrap">
+      <div class="solar-bar ${cls}" style="height:${heightPct}%"></div>
+      <div class="solar-bar-label">${monthNames[i]}</div>
+    </div>`;
+  }).join('');
+})();
+
+// ---- Equipment Selector ----
+(function initSelector() {
+  const roofSlider = document.getElementById('roofArea');
+  const energySlider = document.getElementById('energyConsump');
+  const roofVal = document.getElementById('roofAreaVal');
+  const energyVal = document.getElementById('energyConsumpVal');
+
+  function calculate() {
+    const roofM2 = parseInt(roofSlider.value);
+    const monthKwh = parseInt(energySlider.value);
+    roofVal.textContent = roofM2;
+    energyVal.textContent = monthKwh.toLocaleString('ru-RU');
+
+    // Panel area: 400W panel ≈ 2.0 m², use ~55% of roof area
+    const maxPanelsFromRoof = Math.floor(roofM2 * 0.55 / 2.0);
+    const maxKwFromRoof = (maxPanelsFromRoof * 0.4);
+
+    // Required power from energy consumption
+    const yearKwh = monthKwh * 12;
+    const requiredKw = yearKwh / (SOLAR_CALC.insolation * SOLAR_CALC.efficiency);
+
+    // Choose min of roof capacity and required
+    const systemKw = Math.min(maxKwFromRoof, requiredKw);
+    const roundedKw = Math.max(1, Math.round(systemKw * 10) / 10);
+    const panelCount = Math.ceil(roundedKw * 1000 / 400);
+
+    const annualSaving = Math.round(Math.min(yearKwh, panelCount * 400 / 1000 * SOLAR_CALC.insolation * SOLAR_CALC.efficiency) * SOLAR_CALC.tariff);
+    const systemCost = Math.round(roundedKw * SOLAR_CALC.systemCostPerKw);
+    const payback = (systemCost / annualSaving).toFixed(1);
+
+    const inverterKw = roundedKw <= 3 ? 3 : roundedKw <= 6 ? 5 : 10;
+    const inverterPrice = inverterKw === 3 ? 55000 : inverterKw === 5 ? 85000 : 150000;
+    const panelPrice = panelCount * 18500;
+    const mountPrice = 22000;
+    const installPrice = Math.round(roundedKw * 15000);
+
+    document.getElementById('srPower').textContent = roundedKw + ' кВт';
+    document.getElementById('srPanels').textContent = panelCount + ' шт';
+    document.getElementById('srSaving').textContent = annualSaving.toLocaleString('ru-RU') + ' ₽';
+    document.getElementById('srPayback').textContent = payback + ' лет';
+
+    document.getElementById('selectorEquipment').innerHTML = `
+      <div class="equip-row"><span class="equip-name">☀️ Панели JA Solar 400 Вт × ${panelCount} шт</span><span class="equip-val">${panelPrice.toLocaleString('ru-RU')} ₽</span></div>
+      <div class="equip-row"><span class="equip-name">⚡ Инвертор Growatt ${inverterKw} кВт</span><span class="equip-val">${inverterPrice.toLocaleString('ru-RU')} ₽</span></div>
+      <div class="equip-row"><span class="equip-name">🔧 Монтажная система K2 Systems</span><span class="equip-val">${mountPrice.toLocaleString('ru-RU')} ₽</span></div>
+      <div class="equip-row"><span class="equip-name">🏗️ Монтаж под ключ</span><span class="equip-val">${installPrice.toLocaleString('ru-RU')} ₽</span></div>
+      <div class="equip-row" style="background:var(--green-bg);border-radius:var(--radius-sm)">
+        <span class="equip-name" style="font-weight:700;color:var(--green)">Итого под ключ</span>
+        <span class="equip-val" style="font-size:17px;color:var(--green)">${(panelPrice+inverterPrice+mountPrice+installPrice).toLocaleString('ru-RU')} ₽</span>
+      </div>`;
+
+    // Store for lead form
+    roofSlider.dataset.kw = roundedKw;
+    roofSlider.dataset.panels = panelCount;
+    roofSlider.dataset.saving = annualSaving;
+    roofSlider.dataset.payback = payback;
+  }
+
+  roofSlider.addEventListener('input', calculate);
+  energySlider.addEventListener('input', calculate);
+  calculate();
+})();
+
+// ---- Hits ----
 (async function loadHits() {
   const products = await loadProducts();
   const hits = products.filter(p => p.hits && p.active);
   const grid = document.getElementById('hitsGrid');
-  if (grid && hits.length > 0) {
-    grid.innerHTML = hits.map(buildProductCard).join('');
-  }
+  if (grid && hits.length > 0) grid.innerHTML = hits.map(buildProductCard).join('');
 })();
+
+// ---- Header search redirect ----
+document.getElementById('headerSearch')?.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    location.href = 'catalog.html?search=' + encodeURIComponent(this.value.trim());
+  }
+});
+
+// ---- Mobile nav ----
+document.getElementById('burger')?.addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+document.getElementById('mobileNavClose')?.addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+
+// ---- Calc lead form ----
+document.getElementById('calcLeadForm')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const name = this.querySelector('[name="name"]').value;
+  const phone = this.querySelector('[name="phone"]').value;
+  const roofSlider = document.getElementById('roofArea');
+  const kw = roofSlider?.dataset.kw || '?';
+  const panels = roofSlider?.dataset.panels || '?';
+  const saving = roofSlider?.dataset.saving || '?';
+  const payback = roofSlider?.dataset.payback || '?';
+  const roof = roofSlider?.value || '?';
+  const energy = document.getElementById('energyConsump')?.value || '?';
+  const msg = `📐 <b>Заявка с подборщика оборудования</b>\n👤 ${name}\n📱 ${phone}\n\n🏠 Площадь кровли: ${roof} м²\n⚡ Потребление: ${energy} кВт·ч/мес\n\n🔆 Система: ${kw} кВт, ${panels} панелей\n💰 Экономия: ${parseInt(saving).toLocaleString('ru-RU')} ₽/год\n📅 Окупаемость: ${payback} лет`;
+  await sendToTelegram(msg);
+  showSuccess(document.getElementById('calcLeadModal'));
+});
 </script>
 </body>
 </html>

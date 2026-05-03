@@ -12,22 +12,34 @@
   <div class="header-main">
     <div class="container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">🌿</div>
-        <div class="logo-text"><strong>GreenTarif</strong><span>Солнечная энергия Кубани</span></div>
+        <div class="logo-mark">🌿</div>
+        <span class="logo-name">GreenTarif</span>
       </a>
-      <div style="flex:1;display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;font-weight:600">
-        <span style="color:var(--green)">✔ Корзина</span>
-        <span>›</span>
-        <span style="color:var(--green-dark);font-weight:700">Оформление</span>
-        <span>›</span>
-        <span>Готово</span>
+      <div class="header-search">
+        <span class="header-search-icon">🔍</span>
+        <input type="search" id="headerSearch" placeholder="Солнечные панели, инверторы...">
       </div>
-      <div class="header-actions">
-        <a href="cart.html" style="color:var(--green);font-size:14px;font-weight:600;text-decoration:none">← Назад в корзину</a>
+      <div class="header-right">
+        <a href="tel:+78612005030" class="header-phone">+7 (861) 200-50-30</a>
+        <a href="cart.html" class="header-cart">🛒<span class="cart-badge hidden" id="cartCount">0</span></a>
+        <button class="burger" id="burger">☰</button>
       </div>
     </div>
   </div>
+  <nav class="header-nav">
+    <div class="container">
+      <a href="catalog.html?cat=solar-panels">Солнечные панели</a>
+      <a href="catalog.html?cat=inverters">Инверторы</a>
+      <a href="catalog.html?cat=batteries">Аккумуляторы</a>
+      <a href="catalog.html?cat=mounting">Монтаж</a>
+      <a href="catalog.html?cat=accessories">Аксессуары</a>
+      <a href="calculator.html">Калькулятор</a>
+      <a href="about.html">О компании</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </nav>
 </header>
+
 
 <div class="container">
   <nav class="breadcrumbs">
@@ -296,6 +308,14 @@ ${comment ? `💬 Комментарий: ${comment}` : ''}`;
   document.getElementById('successModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+</script>
+
+<script>
+document.getElementById('burger')?.addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+document.getElementById('mobileNavClose')?.addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+document.getElementById('headerSearch')?.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) location.href = 'catalog.html?search=' + encodeURIComponent(this.value.trim());
+});
 </script>
 </body>
 </html>

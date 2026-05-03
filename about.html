@@ -9,34 +9,37 @@
 <body>
 
 <header class="header">
-  <div class="header-top">
-    <div class="container">
-      <div class="savings-ticker">☀️ Наши клиенты уже сэкономили: <span class="savings-amount" id="savingsAmount">0 ₽</span></div>
-      <div>📍 Краснодар, Сочи, Новороссийск</div>
-    </div>
-  </div>
   <div class="header-main">
     <div class="container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">🌿</div>
-        <div class="logo-text"><strong>GreenTarif</strong><span>Солнечная энергия Кубани</span></div>
+        <div class="logo-mark">🌿</div>
+        <span class="logo-name">GreenTarif</span>
       </a>
-      <nav id="mainNav">
-        <a href="index.html">Главная</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="calculator.html">Калькулятор</a>
-        <a href="about.html">О компании</a>
-        <a href="contacts.html">Контакты</a>
-      </nav>
-      <div class="header-actions">
-        <div class="phone-link"><strong>+7 (861) 200-50-30</strong></div>
-        <button class="btn-callback" data-modal="callback">Заказать звонок</button>
-        <a href="cart.html" class="cart-btn">🛒 <span class="cart-count hidden" id="cartCount">0</span></a>
+      <div class="header-search">
+        <span class="header-search-icon">🔍</span>
+        <input type="search" id="headerSearch" placeholder="Солнечные панели, инверторы...">
+      </div>
+      <div class="header-right">
+        <a href="tel:+78612005030" class="header-phone">+7 (861) 200-50-30</a>
+        <a href="cart.html" class="header-cart">🛒<span class="cart-badge hidden" id="cartCount">0</span></a>
         <button class="burger" id="burger">☰</button>
       </div>
     </div>
   </div>
+  <nav class="header-nav">
+    <div class="container">
+      <a href="catalog.html?cat=solar-panels">Солнечные панели</a>
+      <a href="catalog.html?cat=inverters">Инверторы</a>
+      <a href="catalog.html?cat=batteries">Аккумуляторы</a>
+      <a href="catalog.html?cat=mounting">Монтаж</a>
+      <a href="catalog.html?cat=accessories">Аксессуары</a>
+      <a href="calculator.html">Калькулятор</a>
+      <a href="about.html">О компании</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </nav>
 </header>
+
 
 <div class="about-hero">
   <div class="container">
@@ -194,5 +197,13 @@
 <script src="js/config.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/main.js"></script>
+
+<script>
+document.getElementById('burger')?.addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+document.getElementById('mobileNavClose')?.addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+document.getElementById('headerSearch')?.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) location.href = 'catalog.html?search=' + encodeURIComponent(this.value.trim());
+});
+</script>
 </body>
 </html>
