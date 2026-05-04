@@ -269,7 +269,7 @@ function getStockLabel(stock) {
 }
 
 function buildProductCard(p) {
-  const discount = p.old_price ? Math.round((1 - p.price / p.old_price) * 100) : 0;
+  const discount = (!p.price_on_request && p.old_price) ? Math.round((1 - p.price / p.old_price) * 100) : 0;
   const power = p.power_wp ? `⚡ ${p.power_wp} Вт` : (p.power_kw ? `⚡ ${p.power_kw} кВт` : (p.energy_kwh ? `🔋 ${p.energy_kwh} кВт·ч` : ''));
   return `
   <div class="product-card">
@@ -285,13 +285,18 @@ function buildProductCard(p) {
       ${power ? `<span class="product-power">${power}</span>` : ''}
       ${getStockLabel(p.stock)}
       <div class="product-price-row">
-        <span class="product-price">${formatPrice(p.price)}</span>
-        ${p.old_price ? `<span class="product-old-price">${formatPrice(p.old_price)}</span>` : ''}
+        ${p.price_on_request
+          ? `<span class="product-price price-on-request">По запросу</span>`
+          : `<span class="product-price">${formatPrice(p.price)}</span>${p.old_price ? `<span class="product-old-price">${formatPrice(p.old_price)}</span>` : ''}`
+        }
       </div>
     </div>
     <div class="product-actions">
-      <button class="btn-cart" onclick="cartAdd('${p.article}')">🛒 В корзину</button>
-      <button class="btn-quick" onclick="openQuickBuy('${p.article}', '${p.name}')">1 клик</button>
+      ${p.price_on_request
+        ? `<button class="btn-cart btn-request" onclick="openModal(document.getElementById('callbackModal'))">📞 Узнать цену</button>`
+        : `<button class="btn-cart" onclick="cartAdd('${p.article}')">🛒 В корзину</button>
+           <button class="btn-quick" onclick="openQuickBuy('${p.article}', '${p.name}')">1 клик</button>`
+      }
     </div>
   </div>`;
 }

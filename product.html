@@ -20,7 +20,7 @@
         <input type="search" id="headerSearch" placeholder="Солнечные панели, инверторы...">
       </div>
       <div class="header-right">
-        <a href="tel:+78612005030" class="header-phone">+7 (861) 200-50-30</a>
+        <a href="tel:+79168978240" class="header-phone">+7 (916) 897-82-40</a>
         <a href="cart.html" class="header-cart">🛒<span class="cart-badge hidden" id="cartCount">0</span></a>
         <button class="burger" id="burger">☰</button>
       </div>
@@ -28,17 +28,36 @@
   </div>
   <nav class="header-nav">
     <div class="container">
-      <a href="catalog.html?cat=solar-panels">Солнечные панели</a>
-      <a href="catalog.html?cat=inverters">Инверторы</a>
-      <a href="catalog.html?cat=batteries">Аккумуляторы</a>
-      <a href="catalog.html?cat=mounting">Монтаж</a>
-      <a href="catalog.html?cat=accessories">Аксессуары</a>
-      <a href="calculator.html">Калькулятор</a>
-      <a href="about.html">О компании</a>
-      <a href="contacts.html">Контакты</a>
+      <a href="catalog.html" class="nav-categories-btn">
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" aria-hidden="true">
+          <rect y="0" width="16" height="2" rx="1"/>
+          <rect y="5" width="16" height="2" rx="1"/>
+          <rect y="10" width="16" height="2" rx="1"/>
+        </svg>
+        Категории
+      </a>
+      <div class="nav-links">
+        <a href="catalog.html?cat=solar-panels">Солнечные панели</a>
+        <a href="catalog.html?cat=inverters">Инверторы</a>
+        <a href="catalog.html?cat=batteries">Аккумуляторы</a>
+        <a href="catalog.html?cat=mounting">Монтаж</a>
+        <a href="catalog.html?cat=accessories">Аксессуары</a>
+      </div>
     </div>
   </nav>
 </header>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+  <div style="margin-top:48px">
+    <a href="catalog.html">Каталог</a>
+    <a href="catalog.html?cat=solar-panels">Солнечные панели</a>
+    <a href="catalog.html?cat=inverters">Инверторы</a>
+    <a href="catalog.html?cat=batteries">Аккумуляторы</a>
+    <a href="catalog.html?cat=mounting">Монтаж</a>
+    <a href="tel:+79168978240" style="color:var(--green);font-weight:700">+7 (916) 897-82-40</a>
+  </div>
+</div>
 
 
 <div class="container">
@@ -54,6 +73,29 @@
 <div class="container" id="productWrap" style="padding-bottom:64px">
   <div style="text-align:center;padding:80px;color:var(--text-muted)">Загрузка...</div>
 </div>
+
+<footer>
+  <div class="container">
+    <div class="footer-min">
+      <div>
+        <a href="index.html" class="footer-logo">
+          <div class="footer-logo-mark">🌿</div>
+          <span class="footer-logo-name">GreenTarif</span>
+        </a>
+        <p class="footer-desc">Продажа и монтаж солнечных электростанций<br>в Краснодарском крае с 2018 года</p>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <div class="footer-contact">📞 <a href="tel:+79168978240">+7 (916) 897-82-40</a></div>
+        <div class="footer-contact">📧 <a href="mailto:info@greentarif.ru">info@greentarif.ru</a></div>
+        <div class="footer-contact">⏰ Пн–Пт 9:00–18:00</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 GreenTarif</span>
+    </div>
+  </div>
+</footer>
 
 <!-- Related -->
 <section style="background:var(--bg)">
@@ -125,21 +167,33 @@
 
   wrap.innerHTML = `
   <div class="product-layout">
-    <!-- Gallery -->
-    <div class="product-gallery">
-      <div class="gallery-main">
-        <img id="galleryMain" src="${images[0]}" alt="${p.name}">
+    <!-- Left: Gallery + Specs -->
+    <div>
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img id="galleryMain" src="${images[0]}" alt="${p.name}">
+        </div>
+        ${images.length > 1 ? `
+        <div class="gallery-thumbs">
+          ${images.map((img, i) => `
+            <div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="setMainImg('${img}', this)">
+              <img src="${img}" alt="">
+            </div>`).join('')}
+        </div>` : ''}
       </div>
-      ${images.length > 1 ? `
-      <div class="gallery-thumbs">
-        ${images.map((img, i) => `
-          <div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="setMainImg('${img}', this)">
-            <img src="${img}" alt="">
-          </div>`).join('')}
+
+      ${Object.keys(p.specifications || {}).length > 0 ? `
+      <div class="product-specs-block">
+        <h3 class="specs-heading">Характеристики</h3>
+        <table class="specs-table">
+          ${Object.entries(p.specifications).map(([k, v]) =>
+            `<tr><td>${k}</td><td>${v}</td></tr>`
+          ).join('')}
+        </table>
       </div>` : ''}
     </div>
 
-    <!-- Info -->
+    <!-- Right: Info -->
     <div class="product-detail-info">
       <div class="product-article">Арт: ${p.article} • ${p.brand}</div>
       <h1 class="product-detail-name">${p.name}</h1>
@@ -153,11 +207,16 @@
       </div>
 
       <div class="product-price-block">
-        <span class="product-price-big">${formatPrice(p.price)}</span>
-        ${p.old_price ? `<span class="product-old-price-big">${formatPrice(p.old_price)}</span>` : ''}
+        ${p.price_on_request
+          ? `<span class="product-price-big price-on-request">По запросу</span>`
+          : `<span class="product-price-big">${formatPrice(p.price)}</span>${p.old_price ? `<span class="product-old-price-big">${formatPrice(p.old_price)}</span>` : ''}`
+        }
       </div>
 
       <div class="product-buy-actions">
+        ${p.price_on_request ? `
+        <button class="btn-cart-big btn-request" style="width:100%" onclick="openModal(document.getElementById('callbackModal'))">📞 Узнать цену — перезвоним за 15 минут</button>
+        ` : `
         <div class="qty-row">
           <div class="qty-input">
             <button class="qty-btn" onclick="changeProductQty(-1)">−</button>
@@ -167,6 +226,7 @@
           <button class="btn-cart-big" onclick="addToCartFromPage()">🛒 В корзину</button>
         </div>
         <button class="btn-one-click" onclick="openQuickBuy('${p.article}', '${p.name.replace(/'/g, "\\'")}')">⚡ Купить в 1 клик</button>
+        `}
       </div>
 
       <div class="product-guarantees">
@@ -182,22 +242,11 @@
         <span style="color:var(--text-muted)">Для частных домов и бизнеса Краснодарского края</span>
       </div>` : ''}
 
-      <!-- Specs tabs -->
-      <div class="tabs">
-        <button class="tab active" onclick="switchProductTab('desc', this)">Описание</button>
-        <button class="tab" onclick="switchProductTab('specs', this)">Характеристики</button>
-      </div>
-
-      <div id="tabDesc" style="font-size:15px;line-height:1.7;color:var(--text)">
-        ${p.description || 'Описание уточняется.'}
-      </div>
-      <div id="tabSpecs" class="hidden">
-        <table class="specs-table">
-          ${Object.entries(p.specifications || {}).map(([k, v]) =>
-            `<tr><td>${k}</td><td>${v}</td></tr>`
-          ).join('')}
-        </table>
-      </div>
+      ${p.description ? `
+      <div class="product-desc-block">
+        <h3 class="specs-heading">Описание</h3>
+        <div style="font-size:15px;line-height:1.7;color:var(--text)">${p.description}</div>
+      </div>` : ''}
     </div>
   </div>`;
 
@@ -234,12 +283,6 @@ function setMainImg(src, thumb) {
   thumb.classList.add('active');
 }
 
-function switchProductTab(tab, btn) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tabDesc').classList.toggle('hidden', tab !== 'desc');
-  document.getElementById('tabSpecs').classList.toggle('hidden', tab !== 'specs');
-}
 </script>
 
 <script>
